@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kalkulator Pelajaran</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Kalkulator Pelajaran</h1>
-
+    
     <label for="subject">Pilih Mata Pelajaran:</label>
-    <select id="subject" onchange="showForm()">
+    <select id="subject" onchange="showSlides()">
       <option value="">-- Pilih --</option>
       <option value="matematika">Matematika</option>
       <option value="fisika">Fisika</option>
       <option value="kimia">Kimia</option>
     </select>
 
-    <!-- Wrapper untuk slide -->
-    <div id="slides-wrapper"></div>
+    <div id="slides-container"></div>
   </div>
 
   <script src="script.js"></script>
