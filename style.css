@@ -6,94 +6,80 @@
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png'),
+              linear-gradient(135deg, #74ebd5, #ACB6E5);
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background motif lucu */
-  background: url('https://www.transparenttextures.com/patterns/bubbles.png'),
-              linear-gradient(135deg, #ffecd2, #fcb69f);
+  min-height: 100vh;
 }
 
 .container {
   background: white;
-  padding: 25px;
+  padding: 30px;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   max-width: 500px;
   width: 100%;
-  animation: fadeIn 0.6s ease-in-out;
+  animation: fadeIn 0.8s ease;
 }
 
 h1 {
   text-align: center;
+  color: #333;
   margin-bottom: 20px;
-  color: #444;
 }
 
-.slide {
-  display: none;
-  animation: fadeIn 0.5s ease;
-}
-
-.active-slide {
-  display: block;
-}
-
-input, button, select {
+select, input, button {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin: 10px 0;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-input:focus, select:focus {
-  border-color: #4CAF50;
-  outline: none;
-  box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+  font-size: 16px;
 }
 
 button {
-  cursor: pointer;
   background-color: #4CAF50;
   color: white;
-  font-weight: bold;
   border: none;
-  transition: 0.3s;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
   background-color: #45a049;
-  transform: translateY(-2px);
 }
 
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+.slide {
+  margin-top: 20px;
 }
 
-.result {
-  background: #f1f1f1;
+.teori {
+  background: #f9f9f9;
+  border-left: 4px solid #4CAF50;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+#hasil {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
   text-align: center;
   margin-top: 10px;
   font-weight: bold;
-  color: #2c3e50;
 }
 
-/* Animasi */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 500px) {
-  .container {
-    padding: 20px;
-    max-width: 95%;
-  }
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
