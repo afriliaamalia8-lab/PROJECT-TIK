@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator Pelajaran</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>Kalkulator Pelajaran</h1>
-    
+
     <label for="subject">Pilih Mata Pelajaran:</label>
     <select id="subject" onchange="showForm()">
       <option value="">-- Pilih --</option>
@@ -18,34 +18,8 @@
       <option value="kimia">Kimia</option>
     </select>
 
-    <!-- Matematika -->
-    <div class="form-section" id="matematika">
-      <h3>Rumus Luas Segitiga: (alas × tinggi) ÷ 2</h3>
-      <input type="number" id="alas" placeholder="Masukkan alas">
-      <input type="number" id="tinggi" placeholder="Masukkan tinggi">
-      <button onclick="hitungMatematika()">Hitung</button>
-      <div class="result" id="hasil-matematika"></div>
-    </div>
-
-    <!-- Fisika -->
-    <div class="form-section" id="fisika">
-      <h3>Rumus GLBB: v = v₀ + a × t</h3>
-      <input type="number" id="v0" placeholder="Kecepatan awal (v₀)">
-      <input type="number" id="a" placeholder="Percepatan (a)">
-      <input type="number" id="t" placeholder="Waktu (t)">
-      <button onclick="hitungFisika()">Hitung</button>
-      <div class="result" id="hasil-fisika"></div>
-    </div>
-
-    <!-- Kimia -->
-    <div class="form-section" id="kimia">
-      <h3>Rumus Massa: Mol × Mr</h3>
-      <input type="number" id="mol" placeholder="Jumlah Mol">
-      <input type="number" id="mr" placeholder="Massa Molekul Relatif (Mr)">
-      <button onclick="hitungKimia()">Hitung</button>
-      <div class="result" id="hasil-kimia"></div>
-    </div>
-
+    <!-- Wrapper untuk slide -->
+    <div id="slides-wrapper"></div>
   </div>
 
   <script src="script.js"></script>
