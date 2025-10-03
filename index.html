@@ -3,133 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kalkulator + Rumus</title>
+  <title>Kalkulator Pelajaran</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <h1>Kalkulator Sederhana</h1>
-
-  <div class="menu">
-    <label for="mode">Pilih Mode: </label>
-    <select id="mode">
-      <option value="kalkulator">Kalkulator</option>
-      <option value="matematika">Rumus Matematika</option>
-      <option value="fisika">Rumus Fisika</option>
-      <option value="kimia">Rumus Kimia</option>
+  <div class="container">
+    <h1>Kalkulator Pelajaran</h1>
+    
+    <label for="subject">Pilih Mata Pelajaran:</label>
+    <select id="subject" onchange="showForm()">
+      <option value="">-- Pilih --</option>
+      <option value="matematika">Matematika</option>
+      <option value="fisika">Fisika</option>
+      <option value="kimia">Kimia</option>
     </select>
-  </div>
 
-  <!-- Kalkulator -->
-  <div class="kalkulator" id="kalkulator">
-    <input type="text" id="display" disabled />
-    <div class="tombol-grid">
-      <button class="operator">C</button>
-      <button class="operator">/</button>
-      <button class="operator">*</button>
-      <button class="operator">-</button>
-
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button class="operator">+</button>
-
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button class="tombol-sama-dengan">=</button>
-
-      <button class="tombol-nol">0</button>
-      <button>.</button>
-    </div>
-  </div>
-
-  <!-- Rumus -->
-  <div class="rumus-container" id="rumus">
-
-    <div id="matematika" class="rumus-section">
-      <h2>📐 Rumus Matematika</h2>
-
-      <div class="kategori">Geometri</div>
-      <ul>
-        <li>Persegi: Luas = sisi × sisi, Keliling = 4 × sisi</li>
-        <li>Persegi Panjang: Luas = panjang × lebar, Keliling = 2 × (p + l)</li>
-        <li>Lingkaran: Luas = π × r², Keliling = 2 × π × r</li>
-        <li>Segitiga: Luas = ½ × alas × tinggi</li>
-        <li>Kubus: Volume = sisi³, Luas = 6 × sisi²</li>
-        <li>Balok: Volume = p × l × t</li>
-        <li>Tabung: Volume = π × r² × t, Luas = 2πr(r + t)</li>
-      </ul>
-
-      <div class="kategori">Aljabar</div>
-      <ul>
-        <li>Rumus ABC: x = [-b ± √(b² - 4ac)] / 2a</li>
-        <li>Garis Lurus: y = mx + c</li>
-      </ul>
-
-      <div class="kategori">Trigonometri</div>
-      <ul>
-        <li>sin = depan / miring</li>
-        <li>cos = samping / miring</li>
-        <li>tan = depan / samping</li>
-      </ul>
+    <!-- Matematika -->
+    <div class="form-section" id="matematika">
+      <h3>Rumus Luas Segitiga: (alas × tinggi) ÷ 2</h3>
+      <input type="number" id="alas" placeholder="Masukkan alas">
+      <input type="number" id="tinggi" placeholder="Masukkan tinggi">
+      <button onclick="hitungMatematika()">Hitung</button>
+      <div class="result" id="hasil-matematika"></div>
     </div>
 
-    <div id="fisika" class="rumus-section">
-      <h2>⚛️ Rumus Fisika</h2>
-
-      <div class="kategori">Mekanika</div>
-      <ul>
-        <li>v = s / t</li>
-        <li>F = m × a</li>
-        <li>EK = ½ × m × v²</li>
-        <li>EP = m × g × h</li>
-      </ul>
-
-      <div class="kategori">Listrik</div>
-      <ul>
-        <li>V = I × R</li>
-        <li>P = V × I</li>
-      </ul>
-
-      <div class="kategori">Termodinamika</div>
-      <ul>
-        <li>ρ = m / V</li>
-        <li>°F = (°C × 9/5) + 32</li>
-        <li>K = °C + 273.15</li>
-      </ul>
+    <!-- Fisika -->
+    <div class="form-section" id="fisika">
+      <h3>Rumus GLBB: v = v₀ + a × t</h3>
+      <input type="number" id="v0" placeholder="Kecepatan awal (v₀)">
+      <input type="number" id="a" placeholder="Percepatan (a)">
+      <input type="number" id="t" placeholder="Waktu (t)">
+      <button onclick="hitungFisika()">Hitung</button>
+      <div class="result" id="hasil-fisika"></div>
     </div>
 
-    <div id="kimia" class="rumus-section">
-      <h2>🧪 Rumus Kimia</h2>
-
-      <div class="kategori">Mol & Partikel</div>
-      <ul>
-        <li>mol = massa / Mr</li>
-        <li>mol (gas) = volume / 22.4</li>
-        <li>partikel = mol × 6.022 × 10²³</li>
-      </ul>
-
-      <div class="kategori">Larutan</div>
-      <ul>
-        <li>M = mol / volume (L)</li>
-        <li>m = mol / massa pelarut (kg)</li>
-        <li>Pengenceran: M₁V₁ = M₂V₂</li>
-        <li>pH = -log[H⁺]</li>
-      </ul>
-
-      <div class="kategori">Gas Ideal</div>
-      <ul>
-        <li>PV = nRT</li>
-      </ul>
+    <!-- Kimia -->
+    <div class="form-section" id="kimia">
+      <h3>Rumus Massa: Mol × Mr</h3>
+      <input type="number" id="mol" placeholder="Jumlah Mol">
+      <input type="number" id="mr" placeholder="Massa Molekul Relatif (Mr)">
+      <button onclick="hitungKimia()">Hitung</button>
+      <div class="result" id="hasil-kimia"></div>
     </div>
 
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
