@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kalkulator Pelajaran</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kalkulator Pelajaran — Slide Rumus</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Kalkulator Pelajaran</h1>
-    
-    <label for="subject">Pilih Mata Pelajaran:</label>
-    <select id="subject" onchange="showSlides()">
-      <option value="">-- Pilih --</option>
-      <option value="matematika">Matematika</option>
-      <option value="fisika">Fisika</option>
-      <option value="kimia">Kimia</option>
-    </select>
+  <div class="app">
+    <header>
+      <h1>📚 Kalkulator Pelajaran (Slide)</h1>
+      <div class="controls">
+        <label for="subject">Pilih Mata Pelajaran</label>
+        <select id="subject">
+          <option value="">— Pilih —</option>
+          <option value="matematika">Matematika</option>
+          <option value="fisika">Fisika</option>
+          <option value="kimia">Kimia</option>
+          <option value="ekonomi">Ekonomi</option>
+        </select>
+      </div>
+    </header>
 
-    <div id="slides-container"></div>
+    <main>
+      <section id="slides-area" class="hidden">
+        <div class="carousel">
+          <div class="slides" id="slides"></div>
+        </div>
+
+        <div class="slide-nav">
+          <button id="prevBtn" class="nav-btn">⬅ Prev</button>
+          <div class="slide-indicator" id="indicator">0 / 0</div>
+          <button id="nextBtn" class="nav-btn">Next ➡</button>
+        </div>
+      </section>
+
+      <section id="info" class="info">
+        <p>Pilih mata pelajaran untuk melihat bank rumus (slide). Di setiap slide ada: <strong>penjelasan singkat</strong>, <strong>input</strong>, dan <strong>tombol hitung</strong>.</p>
+      </section>
+    </main>
+
+    <footer>
+      <small>Jika pakai rumus lingkaran/bola/tabung: pilih π = 3.14 atau 22/7 pada slide yang menampilkan opsi φ.</small>
+    </footer>
   </div>
 
   <script src="script.js"></script>
