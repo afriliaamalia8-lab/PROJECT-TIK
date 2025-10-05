@@ -1,49 +1,122 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kalkulator Pelajaran — Batik Theme</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Pelajaran by Afrilia</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <h1>📚 Kalkulator Pelajaran</h1>
-      <div class="selector">
-        <label for="subject">Pilih Mata Pelajaran</label>
-        <select id="subject" aria-label="Pilih Mata Pelajaran">
-          <option value="">— Pilih —</option>
-          <option value="matematika">Matematika</option>
-          <option value="fisika">Fisika</option>
-          <option value="kimia">Kimia</option>
-          <option value="ekonomi">Ekonomi</option>
-        </select>
+  <div class="overlay"></div>
+  
+  <div class="container fade-in">
+
+    <!-- PROFIL -->
+    <div class="profile-card slide-down">
+      <img src="profil.jpg" alt="Foto Afrilia" class="profile-pic" />
+      <div class="profile-info">
+        <h2>Afrilia Amalia S.</h2>
+        <p>🎓 SMAN 2 Nganjuk</p>
+        <p>📍 Kab. Nganjuk, Prov. Jawa Timur</p>
       </div>
-    </header>
+    </div>
 
-    <main class="main">
-      <section id="slides-area" class="hidden">
-        <div class="carousel">
-          <div class="slides" id="slides"></div>
-        </div>
+    <h1 class="glow">📚 Kalkulator Pelajaran</h1>
 
-        <div class="slide-nav">
-          <button id="prevBtn" class="nav-btn" aria-label="Prev">⬅ Prev</button>
-          <div id="indicator" class="indicator">0 / 0</div>
-          <button id="nextBtn" class="nav-btn" aria-label="Next">Next ➡</button>
-        </div>
-      </section>
+    <label for="subject" class="fade-up">Pilih Mata Pelajaran:</label>
+    <select id="subject" onchange="showForm()" class="fade-up">
+      <option value="">-- Pilih --</option>
+      <option value="matematika">📘 Matematika</option>
+      <option value="fisika">⚡ Fisika</option>
+      <option value="kimia">⚗️ Kimia</option>
+      <option value="ekonomi">💰 Ekonomi</option>
+    </select>
 
-      <section id="intro" class="intro">
-        <p>Pilih mata pelajaran untuk melihat bank rumus. Setiap slide memiliki tombol <strong>Pelajari Rumus</strong> yang menampilkan penjelasan lebih lengkap dan tombol <strong>Hitung</strong> untuk menjalankan kalkulator.</p>
-        <p class="hint">Navigasi: tombol Prev/Next atau panah keyboard ← →. Tampilan responsif untuk HP dan Desktop.</p>
-      </section>
-    </main>
+    <!-- MATEMATIKA -->
+    <div class="form-section" id="matematika">
+      <h2>📘 Matematika</h2>
+      <p>Pilih kategori perhitungan di bawah ini:</p>
 
-    <footer class="foot">
-      <small>Tip: untuk rumus lingkaran/tabung/bola pilih nilai π (3.14 atau 22/7) di slide terkait.</small>
-    </footer>
+      <select id="kategori-mtk" onchange="showMathSubForm()">
+        <option value="">-- Pilih Kategori --</option>
+        <option value="datar">Bangun Datar</option>
+        <option value="ruang">Bangun Ruang</option>
+      </select>
+
+      <!-- Bangun Datar -->
+      <div id="bangun-datar" class="sub-form">
+        <h3>📐 Luas Segitiga</h3>
+        <p><i>(alas × tinggi) ÷ 2</i></p>
+        <input type="number" id="alas" placeholder="Masukkan alas (cm)">
+        <input type="number" id="tinggi" placeholder="Masukkan tinggi (cm)">
+        <button onclick="hitungSegitiga()">Hitung</button>
+        <div id="hasil-segitiga" class="result"></div>
+
+        <h3>⚪ Luas Lingkaran</h3>
+        <p><i>π × r²</i></p>
+        <label>Pilih nilai π:</label>
+        <select id="phi">
+          <option value="3.14">3,14</option>
+          <option value="22/7">22/7</option>
+        </select>
+        <input type="number" id="jari" placeholder="Masukkan jari-jari (cm)">
+        <button onclick="hitungLingkaran()">Hitung</button>
+        <div id="hasil-lingkaran" class="result"></div>
+      </div>
+
+      <!-- Bangun Ruang -->
+      <div id="bangun-ruang" class="sub-form">
+        <h3>🧊 Volume Kubus</h3>
+        <p><i>s³</i></p>
+        <input type="number" id="sisi" placeholder="Masukkan sisi (cm)">
+        <button onclick="hitungKubus()">Hitung</button>
+        <div id="hasil-kubus" class="result"></div>
+
+        <h3>🪄 Volume Tabung</h3>
+        <p><i>π × r² × t</i></p>
+        <label>Pilih nilai π:</label>
+        <select id="phi-tabung">
+          <option value="3.14">3,14</option>
+          <option value="22/7">22/7</option>
+        </select>
+        <input type="number" id="r-tabung" placeholder="Jari-jari (cm)">
+        <input type="number" id="t-tabung" placeholder="Tinggi (cm)">
+        <button onclick="hitungTabung()">Hitung</button>
+        <div id="hasil-tabung" class="result"></div>
+      </div>
+    </div>
+
+    <!-- FISIKA -->
+    <div class="form-section" id="fisika">
+      <h2>⚡ Fisika</h2>
+      <p>Rumus Gerak Lurus Berubah Beraturan (GLBB):</p>
+      <h3>v = v₀ + a × t</h3>
+      <input type="number" id="v0" placeholder="Kecepatan awal (m/s)">
+      <input type="number" id="a" placeholder="Percepatan (m/s²)">
+      <input type="number" id="t" placeholder="Waktu (s)">
+      <button onclick="hitungFisika()">Hitung</button>
+      <div id="hasil-fisika" class="result"></div>
+    </div>
+
+    <!-- KIMIA -->
+    <div class="form-section" id="kimia">
+      <h2>⚗️ Kimia</h2>
+      <p>Rumus umum: Massa = Mol × Mr</p>
+      <input type="number" id="mol" placeholder="Jumlah mol (mol)">
+      <input type="number" id="mr" placeholder="Mr (g/mol)">
+      <button onclick="hitungKimia()">Hitung</button>
+      <div id="hasil-kimia" class="result"></div>
+    </div>
+
+    <!-- EKONOMI -->
+    <div class="form-section" id="ekonomi">
+      <h2>💰 Ekonomi</h2>
+      <p>Rumus Laba: Laba = Pendapatan - Modal</p>
+      <input type="number" id="pendapatan" placeholder="Pendapatan (Rp)">
+      <input type="number" id="modal" placeholder="Modal (Rp)">
+      <button onclick="hitungEkonomi()">Hitung</button>
+      <div id="hasil-ekonomi" class="result"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>
