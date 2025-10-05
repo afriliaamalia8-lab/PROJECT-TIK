@@ -3,155 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalkulator Edukasi by Afrilia</title>
+  <title>Kalkulator Edukasi - Afrilia Amalia S.</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container fade-in">
-    
-    <!-- Profil Pembuat -->
-    <header class="profil">
-      <img src="img/profil.jpg" alt="Afrilia Amalia S." class="profil-foto" />
-      <div class="profil-info">
-        <h2>Afrilia Amalia S. 🏫</h2>
-        <p><i>SMAN 2 Nganjuk, Kab. Nganjuk</i></p>
+    <!-- Profil -->
+    <header class="profil-card slide-down">
+      <img src="profil.jpg" alt="Foto Profil" class="profil-img" onerror="this.style.display='none'" />
+      <div>
+        <h2>Afrilia Amalia S.</h2>
+        <p>🏫 SMAN 2 Nganjuk</p>
       </div>
     </header>
 
-    <!-- Menu Utama -->
-    <section id="menuUtama" class="slide active">
-      <h1>📘 Pilih Mata Pelajaran</h1>
+    <!-- Menu Pilihan -->
+    <section class="menu fade-in">
+      <h3>Pilih Kategori Kalkulator</h3>
       <div class="menu-btns">
-        <button class="btn" onclick="showSlide('matematika')">Matematika</button>
-        <button class="btn" onclick="showSlide('fisika')">Fisika</button>
-        <button class="btn" onclick="showSlide('ekonomi')">Ekonomi</button>
-        <button class="btn" onclick="showSlide('umum')">Kalkulator Umum</button>
+        <button onclick="pilihKategori('matematika')">📘 Matematika</button>
+        <button onclick="pilihKategori('fisika')">⚡ Fisika</button>
+        <button onclick="pilihKategori('kimia')">🧪 Kimia</button>
+        <button onclick="pilihKategori('ekonomi')">💰 Ekonomi</button>
+        <button onclick="pilihKategori('umum')">🧮 Kalkulator Umum</button>
       </div>
     </section>
 
-    <!-- MATEMATIKA -->
-    <section id="matematika" class="slide">
-      <h2>📐 Matematika</h2>
-      <p>Pilih materi yang ingin kamu pelajari:</p>
-      <div class="menu-btns">
-        <button class="btn" onclick="showSlide('bangunDatar')">Bangun Datar</button>
-        <button class="btn" onclick="showSlide('bangunRuang')">Bangun Ruang</button>
-        <button class="btn" onclick="showSlide('polinomial')">Polinomial</button>
-        <button class="btn" onclick="showSlide('spltv')">SPLTV</button>
-      </div>
-      <button class="back-btn" onclick="showSlide('menuUtama')">⬅ Kembali</button>
-    </section>
-
-    <!-- Bangun Datar -->
-    <section id="bangunDatar" class="slide">
-      <h2>🟦 Bangun Datar</h2>
-      <p>Rumus-rumus dasar:</p>
-      <ul>
-        <li>Luas Persegi = s² (cm²)</li>
-        <li>Luas Persegi Panjang = p × l (cm²)</li>
-        <li>Luas Segitiga = ½ × a × t (cm²)</li>
-        <li>Luas Lingkaran = π × r² (cm²)</li>
-      </ul>
-      <button class="btn" onclick="showPiChoice()">Pelajari Rumus</button>
-      <button class="back-btn" onclick="showSlide('matematika')">⬅ Kembali</button>
-    </section>
-
-    <!-- Bangun Ruang -->
-    <section id="bangunRuang" class="slide">
-      <h2>🧊 Bangun Ruang</h2>
-      <ul>
-        <li>Volume Kubus = s³ (cm³)</li>
-        <li>Volume Balok = p × l × t (cm³)</li>
-        <li>Volume Tabung = π × r² × t (cm³)</li>
-        <li>Volume Bola = ⁴/₃ × π × r³ (cm³)</li>
-      </ul>
-      <button class="btn" onclick="showPiChoice()">Pelajari Rumus</button>
-      <button class="back-btn" onclick="showSlide('matematika')">⬅ Kembali</button>
-    </section>
-
-    <!-- Polinomial -->
-    <section id="polinomial" class="slide">
-      <h2>📊 Polinomial</h2>
-      <ul>
-        <li>Bentuk umum: P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀</li>
-        <li>Turunan Polinomial: P'(x) = n·aₙxⁿ⁻¹ + (n−1)aₙ₋₁xⁿ⁻² + ... + a₁</li>
-        <li>Jumlah Akar: −(b/a)</li>
-        <li>Hasil Kali Akar: c/a</li>
-        <li>Nilai P(x): substitusikan nilai x ke fungsi</li>
-      </ul>
-      <button class="btn">Pelajari Rumus</button>
-      <button class="back-btn" onclick="showSlide('matematika')">⬅ Kembali</button>
-    </section>
-
-    <!-- SPLTV -->
-    <section id="spltv" class="slide">
-      <h2>🧮 SPLTV</h2>
-      <p>Bentuk umum:</p>
-      <pre>
-a₁x + b₁y + c₁z = d₁  
-a₂x + b₂y + c₂z = d₂  
-a₃x + b₃y + c₃z = d₃
-      </pre>
-      <ul>
-        <li>Metode Eliminasi → menghilangkan satu variabel secara bertahap</li>
-        <li>Metode Substitusi → ganti satu variabel ke persamaan lain</li>
-        <li>Metode Campuran → gabungkan keduanya</li>
-      </ul>
-      <button class="btn">Pelajari Rumus</button>
-      <button class="back-btn" onclick="showSlide('matematika')">⬅ Kembali</button>
-    </section>
-
-    <!-- FISIKA -->
-    <section id="fisika" class="slide">
-      <h2>⚙️ Fisika</h2>
-      <ul>
-        <li>GLBB: s = v₀t + ½at² (m)</li>
-        <li>Usaha: W = F × s (Joule)</li>
-        <li>Daya: P = W / t (Watt)</li>
-        <li>Energi Kinetik: Ek = ½mv² (Joule)</li>
-      </ul>
-      <button class="back-btn" onclick="showSlide('menuUtama')">⬅ Kembali</button>
-    </section>
-
-    <!-- EKONOMI -->
-    <section id="ekonomi" class="slide">
-      <h2>💰 Ekonomi</h2>
-      <ul>
-        <li>Laba = Pendapatan - Biaya (Rp)</li>
-        <li>Persentase Laba = (Laba / Biaya) × 100%</li>
-        <li>Diskon = (Persentase × Harga Awal) / 100 (Rp)</li>
-        <li>Bunga = (Modal × Persen × Waktu) / 100 (Rp)</li>
-      </ul>
-      <button class="back-btn" onclick="showSlide('menuUtama')">⬅ Kembali</button>
-    </section>
-
-    <!-- Kalkulator Umum -->
-    <section id="umum" class="slide">
-      <h2>🧮 Kalkulator Umum</h2>
-      <input type="text" id="display" readonly>
-      <div class="calc-grid">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="append('/')">÷</button>
-        <button onclick="append('*')">×</button>
-        <button onclick="del()">⌫</button>
-        <button onclick="append('7')">7</button>
-        <button onclick="append('8')">8</button>
-        <button onclick="append('9')">9</button>
-        <button onclick="append('-')">−</button>
-        <button onclick="append('4')">4</button>
-        <button onclick="append('5')">5</button>
-        <button onclick="append('6')">6</button>
-        <button onclick="append('+')">+</button>
-        <button onclick="append('1')">1</button>
-        <button onclick="append('2')">2</button>
-        <button onclick="append('3')">3</button>
-        <button onclick="calculate()">=</button>
-        <button class="zero" onclick="append('0')">0</button>
-        <button onclick="append('.')">.</button>
-      </div>
-      <button class="back-btn" onclick="showSlide('menuUtama')">⬅ Kembali</button>
-    </section>
+    <!-- Area Konten -->
+    <section id="konten" class="konten fade-in"></section>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
