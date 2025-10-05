@@ -1,136 +1,138 @@
- {
+* {
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
 }
 
 body {
   margin: 0;
-  background: url("batikk.jpg") no-repeat center center/cover;
+  padding: 0;
+  background: url("batikk.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #2e1d05;
   min-height: 100vh;
-  overflow-x: hidden;
-  color: #3c2f1e;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 236, 200, 0.65);
-  backdrop-filter: blur(6px);
-  z-index: -1;
-}
-
-.profil {
+/* PROFIL */
+.profile {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 20px auto;
-  text-align: center;
+  margin-top: 20px;
 }
 
-.profil-foto {
-  width: 70px;
-  height: 70px;
+.profile-img {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 3px solid #c08a24;
-  margin-right: 12px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  object-fit: cover;
+  border: 3px solid #d4a017;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-.profil-info h2 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #5b3b09;
-}
-.profil-info p {
-  font-size: 0.9rem;
-  color: #6a4e12;
+.profile-info {
+  text-align: center;
+  color: #3b2c08;
 }
 
 .container {
-  background: rgba(255,255,255,0.85);
-  padding: 20px;
-  border-radius: 16px;
-  max-width: 420px;
-  margin: 0 auto;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  animation: fadeIn 0.6s ease-in;
+  background: rgba(255, 255, 255, 0.92);
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  max-width: 450px;
 }
 
 h1 {
   text-align: center;
-  color: #5b3b09;
+  color: #d4a017;
 }
 
-select, input, button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: 1px solid #c4a24d;
-  font-size: 15px;
+.intro {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #4b3b1f;
 }
 
-button {
-  background: linear-gradient(135deg, #d79b2d, #b3781e);
-  color: white;
+/* MENU PILIHAN */
+.menu {
+  display: grid;
+  gap: 10px;
+}
+
+.menu button {
+  background: linear-gradient(90deg, #d4a017, #ffcc70);
   border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 12px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.3s;
-}
-
-button:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.form-section {
-  display: none;
-  animation: fadeSlide 0.4s ease-in-out;
+.menu button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-.sub-form {
-  margin-top: 10px;
+/* SLIDE */
+.hidden {
   display: none;
 }
 
-.result {
-  background-color: #f8f3e7;
-  padding: 10px;
+#content-slide {
+  margin-top: 20px;
+}
+
+.nav-btn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn button {
+  background: #d4a017;
+  color: white;
+  border: none;
   border-radius: 8px;
-  margin-top: 8px;
-  text-align: center;
-  color: #5b3b09;
+  padding: 8px 14px;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.calc {
-  background: rgba(255,255,255,0.9);
-  padding: 10px;
-  border-radius: 12px;
+.nav-btn button:hover {
+  background: #b8860b;
 }
 
-.calc input {
-  width: 100%;
-  padding: 15px;
-  text-align: right;
-  font-size: 1.2em;
-  border-radius: 8px;
-  border: 1px solid #b78c2d;
+/* ANIMASI */
+.fade-in {
+  animation: fadeIn 1s ease-in;
 }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 10px;
+.slide-down {
+  animation: slideDown 0.8s ease;
 }
 
-.equal {
-  grid-row: span 2;
-  background: linear-gradient(135deg, #b37919, #ffb84c);
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-15px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIF */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+  .menu button {
+    font-size: 15px;
+  }
 }
