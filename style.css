@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: url("img/batikk.jpg") no-repeat center center fixed, linear-gradient(135deg, #d49a3a, #734c10);
+  background: url("batikk.jpg") no-repeat center center fixed, linear-gradient(135deg, #d49a3a, #734c10);
   background-size: cover;
   color: #fff;
   text-align: center;
