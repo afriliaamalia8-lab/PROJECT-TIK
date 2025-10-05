@@ -1,63 +1,62 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kalkulator Pelajaran — Afrilia Amalia S.</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kalkulator Pelajaran — Afrilia Amalia S.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- BACKDROP (batik image set in CSS, profile image uses img/profil.jpg) -->
-  <header class="profile-bar">
-    <img src="profil.jpg" alt="Foto Afrilia" class="profile-img" onerror="this.style.display='none'">
-    <div class="profile-text">
-      <div class="name">Afrilia Amalia S.</div>
-      <div class="school">SMAN 2 Nganjuk</div>
-    </div>
-  </header>
 
-  <main class="panel">
-    <!-- Intro/menu (visible awal). The intro sentence only shown on this screen as requested -->
-    <section id="menuScreen" class="menu-screen">
-      <h1 class="title">Kalkulator Pelajaran</h1>
-      <p class="subtitle">Pilih mata pelajaran untuk mulai belajar dan menghitung rumus</p>
+    <header class="profile-bar">
+        <img src="img/profil.jpg" alt="Foto Profil Afrilia" class="profile-img">
+        <div class="profile-text">
+            <div class="name">Afrilia Amalia S.</div>
+            <div class="school">SMAN 2 Nganjuk</div>
+        </div>
+    </header>
 
-      <div class="menu-grid">
-        <button class="menu-btn" data-subj="matematika">📘 Matematika</button>
-        <button class="menu-btn" data-subj="fisika">🔭 Fisika</button>
-        <button class="menu-btn" data-subj="kimia">⚗️ Kimia</button>
-        <button class="menu-btn" data-subj="ekonomi">💰 Ekonomi</button>
-        <button class="menu-btn" data-subj="umum">🧮 Kalkulator Umum</button>
-      </div>
-    </section>
+    <main class="panel">
+        <section id="menuScreen" class="content-card">
+            <h1 class="title">Kalkulator Pelajaran</h1>
+            <p class="subtitle">Pilih mata pelajaran untuk mulai menghitung rumus.</p>
+            <div class="menu-grid">
+                <button class="menu-btn" data-subject="matematika">📘 Matematika</button>
+                <button class="menu-btn" data-subject="fisika">🔭 Fisika</button>
+                <button class="menu-btn" data-subject="kimia">⚗️ Kimia</button>
+                <button class="menu-btn" data-subject="ekonomi">💰 Ekonomi</button>
+                <button class="menu-btn" data-subject="umum">🧮 Umum</button>
+            </div>
+        </section>
 
-    <!-- Slide container (hidden until user picks a subject) -->
-    <section id="slideWrapper" class="slide-wrapper hidden">
-      <div class="slide-header">
-        <button id="backToMenu" class="ghost">⬅ Kembali ke Pilihan</button>
-        <div id="subjectTitle" class="subject-title">Matematika</div>
-      </div>
+        <section id="slideWrapper" class="content-card hidden">
+            <div class="slide-header">
+                <button id="backToMenu" class="ghost-btn" aria-label="Kembali ke Menu">⬅ Kembali</button>
+                <h2 id="subjectTitle" class="subject-title"></h2>
+            </div>
 
-      <!-- actual slide area -->
-      <div class="slider">
-        <button id="prevSlide" class="nav-circle" aria-label="Sebelumnya">◀</button>
-        <div id="slides" class="slides"></div>
-        <button id="nextSlide" class="nav-circle" aria-label="Selanjutnya">▶</button>
-      </div>
+            <div class="slider-container">
+                <button id="prevSlide" class="nav-circle" aria-label="Slide Sebelumnya">◀</button>
+                <div id="slidesViewport" class="slides-viewport">
+                    </div>
+                <button id="nextSlide" class="nav-circle" aria-label="Slide Selanjutnya">▶</button>
+            </div>
+             
+             <div class="controls">
+                <button id="btnPrev" class="ghost-btn">Sebelumnya</button>
+                <button id="btnReset" class="btn alt">Reset</button>
+                <button id="btnNext" class="btn">Selanjutnya</button>
+            </div>
+        </section>
+    </main>
 
-      <!-- navigation controls for slides -->
-      <div class="controls">
-        <button id="btnPrev" class="control-btn">Sebelumnya</button>
-        <button id="btnNext" class="control-btn">Selanjutnya</button>
-        <button id="btnReset" class="control-btn alt">Reset</button>
-      </div>
-    </section>
-  </main>
+    <footer class="site-footer">
+        <p>Desain & Kode © 2025 Afrilia Amalia S.</p>
+    </footer>
 
-  <footer class="site-footer">
-    <div>Desain & kode oleh Afrilia Amalia S. — Proyek edukasi</div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
