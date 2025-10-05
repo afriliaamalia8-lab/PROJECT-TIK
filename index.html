@@ -1,37 +1,134 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator Edukasi - Afrilia Amalia S.</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container fade-in">
-    <!-- Profil -->
-    <header class="profil-card slide-down">
-      <img src="profil.jpg" alt="Foto Profil" class="profil-img" onerror="this.style.display='none'" />
-      <div>
-        <h2>Afrilia Amalia S.</h2>
-        <p>🏫 SMAN 2 Nganjuk</p>
-      </div>
-    </header>
+  <div class="overlay"></div>
 
-    <!-- Menu Pilihan -->
-    <section class="menu fade-in">
-      <h3>Pilih Kategori Kalkulator</h3>
-      <div class="menu-btns">
-        <button onclick="pilihKategori('matematika')">📘 Matematika</button>
-        <button onclick="pilihKategori('fisika')">⚡ Fisika</button>
-        <button onclick="pilihKategori('kimia')">🧪 Kimia</button>
-        <button onclick="pilihKategori('ekonomi')">💰 Ekonomi</button>
-        <button onclick="pilihKategori('umum')">🧮 Kalkulator Umum</button>
+  <header class="profil fade-in">
+    <img src="profil.jpg" alt="Profil" class="profil-foto">
+    <div class="profil-info">
+      <h2>Afrilia Amalia S.</h2>
+      <p>📚 SMAN 2 Nganjuk, Kab. Nganjuk</p>
+    </div>
+  </header>
+
+  <main class="container slide-up">
+    <h1>🧮 Kalkulator Edukasi</h1>
+
+    <div class="menu">
+      <label for="subject">Pilih Mata Pelajaran:</label>
+      <select id="subject" onchange="showForm()">
+        <option value="">-- Pilih --</option>
+        <option value="matematika">Matematika</option>
+        <option value="fisika">Fisika</option>
+        <option value="kimia">Kimia</option>
+        <option value="ekonomi">Ekonomi</option>
+        <option value="umum">Kalkulator Umum</option>
+      </select>
+    </div>
+
+    <!-- MATEMATIKA -->
+    <section id="matematika" class="form-section">
+      <h2>📘 Matematika</h2>
+      <button onclick="showSub('bangunDatar')">Bangun Datar</button>
+      <button onclick="showSub('bangunRuang')">Bangun Ruang</button>
+      <button onclick="showSub('polinomial')">Polinomial</button>
+      <button onclick="showSub('spltv')">SPLTV</button>
+
+      <div id="bangunDatar" class="sub-form">
+        <h3>Rumus Bangun Datar</h3>
+        <p>Luas Lingkaran = π × r²</p>
+        <label>Pilih π:
+          <select id="phi">
+            <option value="3.14">3.14</option>
+            <option value="22/7">22/7</option>
+          </select>
+        </label>
+        <input type="number" id="r" placeholder="Masukkan jari-jari (cm)">
+        <button onclick="hitungLingkaran()">Hitung</button>
+        <div class="result" id="hasilLingkaran"></div>
+      </div>
+
+      <div id="polinomial" class="sub-form">
+        <h3>Rumus Polinomial</h3>
+        <p>f(x) = a·x² + b·x + c</p>
+        <input type="number" id="a" placeholder="a">
+        <input type="number" id="b" placeholder="b">
+        <input type="number" id="c" placeholder="c">
+        <input type="number" id="x" placeholder="x">
+        <button onclick="hitungPolinomial()">Hitung f(x)</button>
+        <div class="result" id="hasilPolinomial"></div>
       </div>
     </section>
 
-    <!-- Area Konten -->
-    <section id="konten" class="konten fade-in"></section>
-  </div>
+    <!-- FISIKA -->
+    <section id="fisika" class="form-section">
+      <h2>⚙️ Fisika</h2>
+      <p>Rumus: v = v₀ + a·t</p>
+      <input type="number" id="v0" placeholder="Kecepatan awal (m/s)">
+      <input type="number" id="aF" placeholder="Percepatan (m/s²)">
+      <input type="number" id="tF" placeholder="Waktu (s)">
+      <button onclick="hitungFisika()">Hitung</button>
+      <div class="result" id="hasilFisika"></div>
+    </section>
+
+    <!-- KIMIA -->
+    <section id="kimia" class="form-section">
+      <h2>🧪 Kimia</h2>
+      <p>Rumus: m = n × Mr</p>
+      <input type="number" id="mol" placeholder="Jumlah mol (mol)">
+      <input type="number" id="mr" placeholder="Massa molekul relatif (Mr)">
+      <button onclick="hitungKimia()">Hitung</button>
+      <div class="result" id="hasilKimia"></div>
+    </section>
+
+    <!-- EKONOMI -->
+    <section id="ekonomi" class="form-section">
+      <h2>💰 Ekonomi</h2>
+      <p>Rumus: Laba = Pendapatan - Biaya</p>
+      <input type="number" id="pendapatan" placeholder="Pendapatan (Rp)">
+      <input type="number" id="biaya" placeholder="Biaya (Rp)">
+      <button onclick="hitungEkonomi()">Hitung</button>
+      <div class="result" id="hasilEkonomi"></div>
+    </section>
+
+    <!-- KALKULATOR UMUM -->
+    <section id="umum" class="form-section">
+      <h2>📱 Kalkulator Umum</h2>
+      <div class="calc">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+          <button onclick="clearDisplay()">C</button>
+          <button onclick="append('/')">÷</button>
+          <button onclick="append('*')">×</button>
+          <button onclick="del()">⌫</button>
+
+          <button onclick="append('7')">7</button>
+          <button onclick="append('8')">8</button>
+          <button onclick="append('9')">9</button>
+          <button onclick="append('-')">−</button>
+
+          <button onclick="append('4')">4</button>
+          <button onclick="append('5')">5</button>
+          <button onclick="append('6')">6</button>
+          <button onclick="append('+')">+</button>
+
+          <button onclick="append('1')">1</button>
+          <button onclick="append('2')">2</button>
+          <button onclick="append('3')">3</button>
+          <button onclick="calculate()" class="equal">=</button>
+
+          <button onclick="append('0')">0</button>
+          <button onclick="append('.')">.</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
