@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 title: "Kalkulator Umum",
                 desc: "Gunakan untuk perhitungan cepat.",
-                template: `<input id="calc-display" type="text" readonly placeholder="0" class="form-row" style="text-align:right; font-size:1.5rem; margin-bottom:1rem;">
-                           <div class="menu-grid" data-delegate="calculator">
+                template: `<input id="calc-display" ...>
+                <div class="calculator-keys" data-delegate="calculator">
                                ${["C","/","*","-","7","8","9","+","4","5","6","=","1","2","3","0","."].map(k => {
                                    let className = 'btn';
                                    if(['/','*','-','+','='].includes(k)) className += ' alt';
