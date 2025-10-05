@@ -1,136 +1,85 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
 body {
+  background: url('img/batikk.jpg') center/cover fixed no-repeat;
+  font-family: 'Poppins', sans-serif;
+  color: #3b2f1d;
+  text-align: center;
   margin: 0;
-  background: url('batikk.jpg') center/cover fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: #333;
-}
-
-/* Overlay lembut */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(3px);
-  z-index: 0;
 }
 
 .container {
-  position: relative;
-  background: rgba(255,255,255,0.9);
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  max-width: 420px;
-  width: 100%;
-  z-index: 2;
-  animation: fadeIn 0.8s ease-in-out;
+  background: rgba(255, 248, 240, 0.93);
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 460px;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease;
 }
 
-/* Profil */
-.profile-card {
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.profil {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  animation: slideDown 1s ease;
+  justify-content: center;
+  gap: 10px;
 }
 
-.profile-pic {
+.profil-foto {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  margin-right: 12px;
-  border: 2px solid #8b72ff;
+  border: 2px solid #b67b00;
+  object-fit: cover;
 }
 
-.profile-info h2 {
-  margin: 0;
-  font-size: 18px;
-  color: #333;
-}
-.profile-info p {
-  margin: 2px 0;
-  font-size: 13px;
-  color: #555;
-}
-
-/* Elemen umum */
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-  color: #4c3cff;
-  text-shadow: 0 0 5px #b4aaff;
-}
-
-select, input, button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-button {
-  background: linear-gradient(135deg, #6a5acd, #836fff);
+.btn, .back-btn {
+  background: linear-gradient(135deg, #f8b400, #e29b00);
+  border: none;
   color: white;
-  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 12px;
+  margin: 8px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s ease;
+  transition: 0.3s;
 }
 
-button:hover {
+.btn:hover, .back-btn:hover {
   transform: scale(1.05);
-  background: linear-gradient(135deg, #5b4bd8, #7f6efc);
+  background: linear-gradient(135deg, #ffcc33, #e0a800);
 }
 
-.result {
-  background: #f4f4ff;
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 10px auto;
+}
+
+input#display {
+  width: 90%;
+  padding: 10px;
   border-radius: 8px;
-  padding: 8px;
-  margin-top: 5px;
-  text-align: center;
-  font-weight: 600;
-  color: #3a2fa0;
+  border: 1px solid #b67b00;
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.form-section {
-  display: none;
-  animation: fadeSlide 0.8s ease;
-}
-
-.sub-form {
+.slide {
   display: none;
 }
 
-/* Animations */
-@keyframes fadeSlide {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-@keyframes fadeIn {
-  from {opacity: 0;} to {opacity: 1;}
-}
-@keyframes slideDown {
-  from {transform: translateY(-20px); opacity: 0;}
-  to {transform: translateY(0); opacity: 1;}
+.slide.active {
+  display: block;
 }
 
-/* Responsif */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .container {
-    padding: 20px;
-    border-radius: 12px;
-  }
-  .profile-pic {
-    width: 50px;
-    height: 50px;
+    max-width: 90%;
+    padding: 1rem;
   }
 }
