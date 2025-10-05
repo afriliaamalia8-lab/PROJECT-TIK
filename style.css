@@ -13,7 +13,7 @@ html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, sans-serif
 
 /* background batik */
 body{
-  background-image: url("img/batikk.jpg");
+  background-image: url("batikk.jpg");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
