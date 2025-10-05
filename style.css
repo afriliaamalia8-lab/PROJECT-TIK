@@ -304,6 +304,19 @@ body::before {
     color: white;
     text-shadow: 1px 1px 2px var(--umber);
 }
+/* --- Keypad Kalkulator Umum --- */
+.calculator-keys {
+    display: grid;
+    /* Membuat grid 4 kolom yang kaku dan presisi */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem; /* Jarak antar tombol */
+}
+
+/* Ukuran font tombol kalkulator bisa sedikit lebih besar */
+.calculator-keys .btn {
+    font-size: 1.2rem;
+    padding: 0.8rem 0; /* Sesuaikan padding vertikal */
+}
 
 /* --- Penyesuaian Responsif --- */
 @media (max-width: 768px) {
