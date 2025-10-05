@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kalkulator Pelajaran — Slide Rumus</title>
+  <title>Kalkulator Pelajaran — Batik Theme</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app">
-    <header>
-      <h1>📚 Kalkulator Pelajaran (Slide)</h1>
-      <div class="controls">
+    <header class="topbar">
+      <h1>📚 Kalkulator Pelajaran</h1>
+      <div class="selector">
         <label for="subject">Pilih Mata Pelajaran</label>
-        <select id="subject">
+        <select id="subject" aria-label="Pilih Mata Pelajaran">
           <option value="">— Pilih —</option>
           <option value="matematika">Matematika</option>
           <option value="fisika">Fisika</option>
@@ -22,26 +22,27 @@
       </div>
     </header>
 
-    <main>
+    <main class="main">
       <section id="slides-area" class="hidden">
         <div class="carousel">
           <div class="slides" id="slides"></div>
         </div>
 
         <div class="slide-nav">
-          <button id="prevBtn" class="nav-btn">⬅ Prev</button>
-          <div class="slide-indicator" id="indicator">0 / 0</div>
-          <button id="nextBtn" class="nav-btn">Next ➡</button>
+          <button id="prevBtn" class="nav-btn" aria-label="Prev">⬅ Prev</button>
+          <div id="indicator" class="indicator">0 / 0</div>
+          <button id="nextBtn" class="nav-btn" aria-label="Next">Next ➡</button>
         </div>
       </section>
 
-      <section id="info" class="info">
-        <p>Pilih mata pelajaran untuk melihat bank rumus (slide). Di setiap slide ada: <strong>penjelasan singkat</strong>, <strong>input</strong>, dan <strong>tombol hitung</strong>.</p>
+      <section id="intro" class="intro">
+        <p>Pilih mata pelajaran untuk melihat bank rumus. Setiap slide memiliki tombol <strong>Pelajari Rumus</strong> yang menampilkan penjelasan lebih lengkap dan tombol <strong>Hitung</strong> untuk menjalankan kalkulator.</p>
+        <p class="hint">Navigasi: tombol Prev/Next atau panah keyboard ← →. Tampilan responsif untuk HP dan Desktop.</p>
       </section>
     </main>
 
-    <footer>
-      <small>Jika pakai rumus lingkaran/bola/tabung: pilih π = 3.14 atau 22/7 pada slide yang menampilkan opsi φ.</small>
+    <footer class="foot">
+      <small>Tip: untuk rumus lingkaran/tabung/bola pilih nilai π (3.14 atau 22/7) di slide terkait.</small>
     </footer>
   </div>
 
