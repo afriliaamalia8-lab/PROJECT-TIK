@@ -22,7 +22,7 @@ html, body {
 }
 
 body {
-    background-image: url("img/batikk.jpg");
+    background-image: url("batikk.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
