@@ -1,135 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: url("batikk.jpg") no-repeat center center fixed, linear-gradient(135deg, #d49a3a, #734c10);
-  background-size: cover;
-  color: #fff;
-  text-align: center;
-}
-
-.container {
-  backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.45);
+  background: url("batikk.jpg") no-repeat center center/cover;
   min-height: 100vh;
-  padding: 20px;
+  overflow-x: hidden;
+  color: #3c2f1e;
 }
 
-/* Profil */
-.profil-card {
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 236, 200, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: -1;
+}
+
+.profil {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  background: rgba(255, 184, 77, 0.2);
-  border: 2px solid #ffb84d;
-  border-radius: 15px;
-  padding: 10px 20px;
-  box-shadow: 0 0 15px rgba(255, 184, 77, 0.5);
-  width: fit-content;
   margin: 20px auto;
-  animation: slideDown 0.8s ease;
+  text-align: center;
 }
 
-.profil-img {
-  width: 65px;
-  height: 65px;
+.profil-foto {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  border: 2px solid gold;
-  object-fit: cover;
+  border: 3px solid #c08a24;
+  margin-right: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
-/* Menu */
-.menu h3 {
-  margin-bottom: 15px;
-  color: #ffd580;
-  text-shadow: 1px 1px 2px #000;
+.profil-info h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #5b3b09;
+}
+.profil-info p {
+  font-size: 0.9rem;
+  color: #6a4e12;
 }
 
-.menu-btns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.menu-btns button {
-  background: linear-gradient(45deg, #ffb84d, #d88b00);
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.menu-btns button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #ffd580, #cc7a00);
-}
-
-/* Konten */
-.konten {
-  margin-top: 20px;
-}
-
-.card {
-  background: rgba(255, 184, 77, 0.1);
-  border: 2px solid #ffb84d;
-  border-radius: 15px;
+.container {
+  background: rgba(255,255,255,0.85);
   padding: 20px;
-  display: inline-block;
-  animation: fadeIn 0.8s ease;
-  width: 90%;
-  max-width: 400px;
+  border-radius: 16px;
+  max-width: 420px;
+  margin: 0 auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease-in;
 }
 
-/* Kalkulator umum */
+h1 {
+  text-align: center;
+  color: #5b3b09;
+}
+
+select, input, button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #c4a24d;
+  font-size: 15px;
+}
+
+button {
+  background: linear-gradient(135deg, #d79b2d, #b3781e);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.form-section {
+  display: none;
+  animation: fadeSlide 0.4s ease-in-out;
+}
+
+.sub-form {
+  margin-top: 10px;
+  display: none;
+}
+
+.result {
+  background-color: #f8f3e7;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-align: center;
+  color: #5b3b09;
+  font-weight: bold;
+}
+
 .calc {
-  display: inline-block;
+  background: rgba(255,255,255,0.9);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.calc input {
+  width: 100%;
+  padding: 15px;
+  text-align: right;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: 1px solid #b78c2d;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   margin-top: 10px;
 }
-.calc input {
-  width: 220px;
-  padding: 8px;
-  margin-bottom: 10px;
-  text-align: right;
-  border-radius: 8px;
-  border: none;
-}
-.calc .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 55px);
-  gap: 5px;
-  justify-content: center;
-}
-.calc button {
-  padding: 10px;
-  background: #d88b00;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.calc button:hover {
-  background: #ffb84d;
-  transform: scale(1.05);
+
+.equal {
+  grid-row: span 2;
+  background: linear-gradient(135deg, #b37919, #ffb84c);
 }
 
-/* Animasi */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsif */
-@media (max-width: 600px) {
-  .profil-card { flex-direction: column; text-align: center; }
-  .calc .buttons { grid-template-columns: repeat(4, 1fr); }
 }
