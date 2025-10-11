@@ -1,4 +1,4 @@
-/* style.css — International Pro Theme (Gold & Umber) 2.0 */
+/* style.css — International Pro Theme 3.0 (Refined & Synced) */
 
 /* --- Variabel Warna & Font Global --- */
 :root {
@@ -30,7 +30,7 @@ body {
     color: var(--umber);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Mencegah scroll horizontal */
+    overflow-x: hidden;
 }
 
 body::before {
@@ -228,34 +228,46 @@ body::before {
     z-index: 1;
 }
 
-/* --- Konten di Dalam Slide --- */
+/* --- KONTEN DALAM SLIDE (PERBAIKAN UTAMA) --- */
 .slide h2 { margin-bottom: 0.5rem; font-size: 1.25rem; }
 .slide p.desc { margin-bottom: 1rem; opacity: 0.8; }
+
+/* PERBAIKAN: Menargetkan .form-group yang dibuat oleh JS */
 .form-group {
     margin-bottom: 0.75rem;
-    display: flex;
-    flex-direction: column;
 }
-.form-group input, .form-group select {
+
+.form-group input, 
+.form-group select {
     width: 100%;
     padding: 0.75rem;
     border-radius: 0.5rem;
     border: 1px solid var(--gold);
     font-size: 1rem;
     background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--umber);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
 .btn-row {
     display: flex;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem; /* Memberi lebih banyak ruang */
     flex-wrap: wrap;
 }
 .btn {
+    flex-grow: 1; /* Membuat tombol mengisi ruang jika memungkinkan */
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1rem;
     background: linear-gradient(145deg, var(--gold-light), var(--gold));
     color: var(--umber);
     box-shadow: 0 6px 12px var(--shadow-color);
@@ -264,19 +276,23 @@ body::before {
 .btn.alt {
     background: transparent;
     border: 1px solid var(--gold);
+    flex-grow: 0; /* Tombol alt tidak perlu memanjang */
 }
 .btn:active { transform: translateY(2px); }
 
-/* --- Status Umpan Balik & Validasi --- */
+/* --- STATUS UMPAN BALIK & VALIDASI --- */
 .btn.calculating {
     cursor: wait;
     opacity: 0.7;
 }
+
+/* PERBAIKAN: Gaya untuk validasi input error */
 .input-error {
     border-color: var(--danger-color) !important;
-    box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.3);
+    box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.3) !important;
 }
-/* Utility untuk aksesibilitas: Sembunyikan elemen secara visual tapi tetap ada untuk screen reader */
+
+/* Aksesibilitas: Sembunyikan label secara visual tapi tetap ada untuk screen reader */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -289,7 +305,7 @@ body::before {
     border: 0;
 }
 
-
+/* PERBAIKAN: Tampilkan result-box saat ada isinya (inline-block lebih fleksibel) */
 .result-box {
     margin-top: 1rem;
     padding: 1rem;
@@ -297,9 +313,11 @@ body::before {
     border-radius: 0.5rem;
     border: 1px solid var(--gold-light);
     font-weight: 600;
+    line-height: 1.6;
     white-space: pre-wrap;
-    display: none; /* Default tersembunyi */
+    display: none; /* Default tersembunyi, JS akan mengubahnya menjadi 'block' */
 }
+
 
 /* --- Footer --- */
 .site-footer {
@@ -320,9 +338,10 @@ body::before {
     .slider-container { flex-direction: column; }
     .slides-viewport { width: 100%; }
     .nav-circle { display: none; }
-    .controls { display: flex !important; }
+    .controls { display: flex !important; } /* Tampilkan kontrol bawah di mobile */
 }
 
+/* Kontrol bawah, disembunyikan di desktop secara default */
 .controls {
     display: none;
     justify-content: space-between;
