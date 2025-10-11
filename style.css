@@ -9,7 +9,7 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .backdrop {
   position: fixed;
   inset: 0;
-  background-image: url("img/batikk.jpg");
+  background-image: url("batikk.jpg");
   background-size: cover;
   background-position: center;
   filter: saturate(0.95) contrast(1.02);
