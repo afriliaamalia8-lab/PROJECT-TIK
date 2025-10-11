@@ -107,6 +107,7 @@ body::before {
     opacity: 0;
     pointer-events: none;
     transform: scale(0.98);
+    display: none; /* Pastikan kartu benar-benar tersembunyi */
 }
 
 /* --- Judul & Sub-judul --- */
@@ -175,6 +176,8 @@ body::before {
     font-weight: 600;
     color: var(--gold);
     font-size: 1.25rem;
+    text-align: center;
+    flex-grow: 1;
 }
 
 .slider-container {
