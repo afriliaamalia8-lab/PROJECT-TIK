@@ -1,72 +1,112 @@
-// data.js: Master Formula Database Module
+// ui.js: DOM Manipulation and UI Logic Module
 
-export const SUBJECT_DATA = {
-    matematika: {
-        title: "📘 Matematika",
-        isCategory: true,
-        categories: {
-            bangunDatar: {
-                title: "📏 Bangun Datar",
-                slides: [
-                    { 
-                        id: "persegi", title: "Persegi", desc: "Menghitung Luas (L) dan Keliling (K).",
-                        inputs: [
-                            { id: "sisi_persegi", label: "Sisi (cm)", type: "number", required: true }
-                        ]
-                    },
-                    { 
-                        id: "persegipanjang", title: "Persegi Panjang", desc: "Menghitung Luas (L) dan Keliling (K).",
-                        inputs: [
-                            { id: "panjang_pp", label: "Panjang (cm)", type: "number", required: true },
-                            { id: "lebar_pp", label: "Lebar (cm)", type: "number", required: true }
-                        ]
-                    },
-                    { 
-                        id: "segitiga", title: "Segitiga", desc: "Rumus: L = ½ × alas × tinggi",
-                        inputs: [
-                            { id: "alas_s", label: "Alas (cm)", type: "number", required: true },
-                            { id: "tinggi_s", label: "Tinggi (cm)", type: "number", required: true }
-                        ]
-                    },
-                    // ... dan seterusnya untuk semua rumus
-                ]
-            },
-            bangunRuang: {
-                title: "🧊 Bangun Ruang",
-                slides: [
-                     { 
-                        id: "kubus", title: "Kubus", desc: "Menghitung Volume (V) dan Luas Permukaan (Lp).",
-                        inputs: [
-                            { id: "sisi_kubus", label: "Sisi (cm)", type: "number", required: true }
-                        ]
-                    },
-                    // ... dan seterusnya
-                ]
-            }
-        }
-    },
-    fisika: {
-        title: "🔭 Fisika",
-        isCategory: false,
-        slides: [
-            { 
-                id: "glbb", title: "Gerak Lurus (GLBB)", desc: "v = v₀ + a·t dan s = v₀t + ½at²",
-                inputs: [
-                    { id: "v0", label: "Kecepatan Awal v₀ (m/s)", type: "number", required: true },
-                    { id: "af", label: "Percepatan a (m/s²)", type: "number", required: true },
-                    { id: "tf", label: "Waktu t (s)", type: "number", required: true }
-                ]
-            },
-             { 
-                id: "ohm", title: "Hukum Ohm", desc: "Menghitung Tegangan (V), Arus (I), atau Hambatan (R). Isi dua nilai untuk mencari yang ketiga.",
-                inputs: [
-                    { id: "v_ohm", label: "Tegangan (V)", type: "number", required: false },
-                    { id: "i_ohm", label: "Arus (A)", type: "number", required: false },
-                    { id: "r_ohm", label: "Hambatan (Ω)", type: "number", required: false }
-                ]
-            },
-            // ... dan seterusnya
-        ]
-    },
-    // ... data untuk Kimia dan Ekonomi
+// --- Element Selectors ---
+const screens = {
+    menu: document.getElementById('menuScreen'),
+    subMenu: document.getElementById('subMenuScreen'),
+    slides: document.getElementById('slideWrapper'),
 };
+const containers = {
+    mainMenu: document.getElementById('mainMenuGrid'),
+    subMenu: document.getElementById('subMenuGrid'),
+    slides: document.getElementById('slidesViewport'),
+};
+const titles = {
+    subMenu: document.getElementById('subMenuTitle'),
+    subject: document.getElementById('subjectTitle'),
+};
+
+// --- Screen Management ---
+export function showScreen(screenName) {
+    Object.values(screens).forEach(s => s.classList.add('hidden'));
+    if (screens[screenName]) {
+        screens[screenName].classList.remove('hidden');
+    }
+}
+
+// --- UI Building ---
+export function buildMainMenu(data, onSelect) {
+    containers.mainMenu.innerHTML = Object.entries(data)
+        .map(([key, { title }]) => `<button class="menu-btn" data-subject="${key}">${title}</button>`)
+        .join('');
+    containers.mainMenu.addEventListener('click', e => {
+        if (e.target.matches('.menu-btn')) {
+            onSelect(e.target.dataset.subject);
+        }
+    });
+}
+
+export function buildSubMenu(subject, data, onSelect) {
+    titles.subMenu.textContent = data.title;
+    containers.subMenu.innerHTML = Object.entries(data.categories)
+        .map(([key, { title }]) => `<button class="menu-btn" data-category="${key}">${title}</button>`)
+        .join('');
+    containers.subMenu.addEventListener('click', e => {
+        if (e.target.matches('.menu-btn')) {
+            onSelect(subject, e.target.dataset.category);
+        }
+    });
+}
+
+export function buildSlides(subject, slideData) {
+    titles.subject.textContent = subject;
+    containers.slides.innerHTML = slideData.map((slide, index) => `
+        <div class="slide ${index === 0 ? 'active' : ''}" data-slide-id="${slide.id}">
+            <h2>${slide.title}</h2>
+            <p class="desc">${slide.desc}</p>
+            ${buildForm(slide.id, slide.inputs)}
+            <div class="result-box" id="res-${slide.id}"></div>
+        </div>
+    `).join('');
+}
+
+function buildForm(calcId, inputs = []) {
+    if (!inputs.length) return '';
+    const formInputs = inputs.map(input => `
+        <div class="form-group">
+            <label for="${input.id}" class="visually-hidden">${input.label}</label>
+            <input id="${input.id}" type="${input.type}" placeholder="${input.label}" ${input.required ? 'required' : ''}>
+        </div>
+    `).join('');
+    
+    return `
+        <form data-calc-form="${calcId}">
+            ${formInputs}
+            <div class="btn-row">
+                <button type="submit" class="btn" data-calc="${calcId}">Hitung</button>
+                <button type="button" class="btn alt" data-clear="${calcId}">Clear</button>
+            </div>
+        </form>
+    `;
+}
+
+// --- UI Interaction ---
+export function renderResult(calcId, resultText) {
+    const resultBox = document.getElementById(`res-${calcId}`);
+    if (resultBox) {
+        resultBox.textContent = resultText;
+        resultBox.style.display = 'block';
+    }
+}
+
+export function clearForm(calcId) {
+    const form = document.querySelector(`form[data-calc-form="${calcId}"]`);
+    const resultBox = document.getElementById(`res-${calcId}`);
+    if (form) form.reset();
+    if (resultBox) {
+        resultBox.style.display = 'none';
+        resultBox.textContent = '';
+    }
+    form.querySelectorAll('input').forEach(input => input.classList.remove('input-error'));
+}
+
+export function getFormValues(calcId) {
+    const form = document.querySelector(`form[data-calc-form="${calcId}"]`);
+    if (!form) return null;
+    const values = {};
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+        values[input.id] = input.value;
+    });
+    return values;
+}
