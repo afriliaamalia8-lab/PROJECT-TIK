@@ -1,112 +1,169 @@
-// ui.js: DOM Manipulation and UI Logic Module
+// main.js: Application Core / Orchestrator
 
-// --- Element Selectors ---
-const screens = {
-    menu: document.getElementById('menuScreen'),
-    subMenu: document.getElementById('subMenuScreen'),
-    slides: document.getElementById('slideWrapper'),
-};
-const containers = {
-    mainMenu: document.getElementById('mainMenuGrid'),
-    subMenu: document.getElementById('subMenuGrid'),
-    slides: document.getElementById('slidesViewport'),
-};
-const titles = {
-    subMenu: document.getElementById('subMenuTitle'),
-    subject: document.getElementById('subjectTitle'),
-};
+import { SUBJECT_DATA } from './data.js';
+import * as ui from './ui.js';
+import * as calculator from './calculator.js';
 
-// --- Screen Management ---
-export function showScreen(screenName) {
-    Object.values(screens).forEach(s => s.classList.add('hidden'));
-    if (screens[screenName]) {
-        screens[screenName].classList.remove('hidden');
+let currentSlideIndex = 0;
+let slides = [];
+let currentHistory = { subject: null, category: null };
+
+// --- State and Navigation ---
+
+function goToSubject(subjectKey) {
+    const subject = SUBJECT_DATA[subjectKey];
+    currentHistory.subject = subjectKey;
+
+    if (subject.isCategory) {
+        ui.buildSubMenu(subjectKey, subject, goToCategory);
+        ui.showScreen('subMenu');
+    } else {
+        setupAndShowSlides(subject.title, subject.slides);
     }
 }
 
-// --- UI Building ---
-export function buildMainMenu(data, onSelect) {
-    containers.mainMenu.innerHTML = Object.entries(data)
-        .map(([key, { title }]) => `<button class="menu-btn" data-subject="${key}">${title}</button>`)
-        .join('');
-    containers.mainMenu.addEventListener('click', e => {
-        if (e.target.matches('.menu-btn')) {
-            onSelect(e.target.dataset.subject);
+function goToCategory(subjectKey, categoryKey) {
+    const category = SUBJECT_DATA[subjectKey].categories[categoryKey];
+    currentHistory.category = categoryKey;
+    setupAndShowSlides(category.title, category.slides);
+}
+
+function setupAndShowSlides(title, slideData) {
+    ui.buildSlides(title, slideData);
+    slides = document.querySelectorAll('#slidesViewport .slide');
+    currentSlideIndex = 0;
+    updateSlideClasses();
+    updateNavButtons();
+    ui.showScreen('slides');
+}
+
+function changeSlide(direction) {
+    const newIndex = currentSlideIndex + direction;
+    if (newIndex >= 0 && newIndex < slides.length) {
+        currentSlideIndex = newIndex;
+        updateSlideClasses();
+        updateNavButtons();
+    }
+}
+
+function updateSlideClasses() {
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active', 'left');
+        if (index === currentSlideIndex) {
+            slide.classList.add('active');
+        } else if (index < currentSlideIndex) {
+            slide.classList.add('left');
         }
     });
 }
 
-export function buildSubMenu(subject, data, onSelect) {
-    titles.subMenu.textContent = data.title;
-    containers.subMenu.innerHTML = Object.entries(data.categories)
-        .map(([key, { title }]) => `<button class="menu-btn" data-category="${key}">${title}</button>`)
-        .join('');
-    containers.subMenu.addEventListener('click', e => {
-        if (e.target.matches('.menu-btn')) {
-            onSelect(subject, e.target.dataset.category);
+function updateNavButtons() {
+    document.getElementById('prevSlide').disabled = currentSlideIndex === 0;
+    document.getElementById('nextSlide').disabled = currentSlideIndex === slides.length - 1;
+    document.getElementById('btnPrev').disabled = currentSlideIndex === 0;
+    document.getElementById('btnNext').disabled = currentSlideIndex === slides.length - 1;
+}
+
+function goBack() {
+    if (currentHistory.category) {
+        currentHistory.category = null;
+        goToSubject(currentHistory.subject);
+    } else if (currentHistory.subject) {
+        currentHistory.subject = null;
+        ui.showScreen('menu');
+    }
+}
+
+// --- Event Handlers ---
+
+function handleCalculation(calcId, button) {
+    const values = ui.getFormValues(calcId);
+    if (!values) return;
+
+    // Real-time validation check
+    let isValid = true;
+    const form = document.querySelector(`form[data-calc-form="${calcId}"]`);
+    form.querySelectorAll('input[required]').forEach(input => {
+        if (!input.value) {
+            isValid = false;
+            input.classList.add('input-error');
+        } else {
+            input.classList.remove('input-error');
         }
     });
+
+    if (!isValid) return;
+
+    if (calculator[calcId]) {
+        button.disabled = true;
+        button.classList.add('calculating');
+        
+        // Simulate processing for visual feedback
+        setTimeout(() => {
+            const result = calculator[calcId](values);
+            ui.renderResult(calcId, result || "Error: Periksa kembali input Anda.");
+            button.disabled = false;
+            button.classList.remove('calculating');
+        }, 100);
+    }
 }
 
-export function buildSlides(subject, slideData) {
-    titles.subject.textContent = subject;
-    containers.slides.innerHTML = slideData.map((slide, index) => `
-        <div class="slide ${index === 0 ? 'active' : ''}" data-slide-id="${slide.id}">
-            <h2>${slide.title}</h2>
-            <p class="desc">${slide.desc}</p>
-            ${buildForm(slide.id, slide.inputs)}
-            <div class="result-box" id="res-${slide.id}"></div>
-        </div>
-    `).join('');
+function handleInputSanitization(e) {
+    if (e.target.matches('input[type="number"]')) {
+        // Remove non-numeric characters except for one dot
+        e.target.value = e.target.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1');
+        // If required, check validation on input
+        if (e.target.hasAttribute('required')) {
+            if (e.target.value) {
+                e.target.classList.remove('input-error');
+            } else {
+                e.target.classList.add('input-error');
+            }
+        }
+    }
 }
 
-function buildForm(calcId, inputs = []) {
-    if (!inputs.length) return '';
-    const formInputs = inputs.map(input => `
-        <div class="form-group">
-            <label for="${input.id}" class="visually-hidden">${input.label}</label>
-            <input id="${input.id}" type="${input.type}" placeholder="${input.label}" ${input.required ? 'required' : ''}>
-        </div>
-    `).join('');
+
+// --- Initial Setup ---
+
+document.addEventListener("DOMContentLoaded", () => {
+    ui.buildMainMenu(SUBJECT_DATA, goToSubject);
     
-    return `
-        <form data-calc-form="${calcId}">
-            ${formInputs}
-            <div class="btn-row">
-                <button type="submit" class="btn" data-calc="${calcId}">Hitung</button>
-                <button type="button" class="btn alt" data-clear="${calcId}">Clear</button>
-            </div>
-        </form>
-    `;
-}
+    // Global event listener for clicks
+    document.body.addEventListener('click', e => {
+        const target = e.target;
 
-// --- UI Interaction ---
-export function renderResult(calcId, resultText) {
-    const resultBox = document.getElementById(`res-${calcId}`);
-    if (resultBox) {
-        resultBox.textContent = resultText;
-        resultBox.style.display = 'block';
-    }
-}
+        // Back buttons
+        if (target.id === 'backToMain' || target.id === 'backToPreviousMenu') {
+            goBack();
+        }
+        
+        // Slide navigation
+        if (target.id === 'prevSlide' || target.id === 'btnPrev') changeSlide(-1);
+        if (target.id === 'nextSlide' || target.id === 'btnNext') changeSlide(1);
 
-export function clearForm(calcId) {
-    const form = document.querySelector(`form[data-calc-form="${calcId}"]`);
-    const resultBox = document.getElementById(`res-${calcId}`);
-    if (form) form.reset();
-    if (resultBox) {
-        resultBox.style.display = 'none';
-        resultBox.textContent = '';
-    }
-    form.querySelectorAll('input').forEach(input => input.classList.remove('input-error'));
-}
-
-export function getFormValues(calcId) {
-    const form = document.querySelector(`form[data-calc-form="${calcId}"]`);
-    if (!form) return null;
-    const values = {};
-    const inputs = form.querySelectorAll('input');
-    inputs.forEach(input => {
-        values[input.id] = input.value;
+        // Clear button
+        if (target.dataset.clear) {
+            ui.clearForm(target.dataset.clear);
+        }
+        
+        // Mobile reset button
+        if (target.id === 'btnReset') {
+             const activeSlide = slides[currentSlideIndex];
+             if (activeSlide) ui.clearForm(activeSlide.dataset.slideId);
+        }
     });
-    return values;
-}
+
+    // Global event listener for form submissions
+    document.body.addEventListener('submit', e => {
+        e.preventDefault();
+        const calcId = e.target.dataset.calcForm;
+        const button = e.target.querySelector('button[type="submit"]');
+        if (calcId) {
+            handleCalculation(calcId, button);
+        }
+    });
+
+    // Global listener for real-time input cleaning
+    document.body.addEventListener('input', handleInputSanitization);
+});
