@@ -1,4 +1,4 @@
-/* === Tema Elegan Juara Dunia === */
+/* === TEMA PUTIH EMAS BATIK ELEGAN === */
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -8,20 +8,19 @@
 body {
   margin: 0;
   background: url('batikk.jpg') center/cover no-repeat fixed;
-  color: #fff;
+  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
 }
 
-/* Overlay emas lembut */
+/* Overlay cerah */
 .overlay {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(43, 43, 43, 0.8);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.65);
   z-index: -1;
 }
 
@@ -31,130 +30,89 @@ body {
   align-items: center;
   margin-top: 20px;
   padding: 10px 20px;
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #e6c879;
   border-radius: 50px;
-  backdrop-filter: blur(6px);
+  box-shadow: 0 0 15px rgba(240, 195, 70, 0.4);
 }
 
 .profile-pic {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  border: 2px solid #d4af37;
+  border: 3px solid #e6c879;
   margin-right: 15px;
 }
 
-.profile-info h2 {
-  font-size: 18px;
-  color: #f6d375;
+.gold-text {
+  color: #b8860b;
   margin: 0;
 }
 
-.profile-info p {
-  font-size: 14px;
-  color: #ccc;
-  margin: 0;
-}
-
-/* Container Utama */
+/* Container utama */
 .container {
   text-align: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.9);
   margin-top: 20px;
   padding: 30px;
   border-radius: 20px;
-  max-width: 400px;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  max-width: 450px;
+  box-shadow: 0 0 25px rgba(180, 150, 50, 0.3);
 }
 
 .title {
-  color: #f5d37c;
-  margin-bottom: 10px;
+  color: #b8860b;
+  font-weight: bold;
 }
 
 .subtitle {
-  color: #ccc;
-  font-size: 14px;
-  margin-bottom: 20px;
+  color: #555;
+  font-size: 15px;
 }
 
-/* Pilihan Mata Pelajaran */
+/* Select */
 .subject-select {
   width: 100%;
   padding: 12px;
   border-radius: 12px;
-  border: none;
-  outline: none;
+  border: 1px solid #e6c879;
+  background: #fff8e1;
   font-size: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  color: #444;
+  cursor: pointer;
 }
 
-/* Area Konten */
+.subject-select:hover {
+  background: #fff3d0;
+}
+
+/* Area konten */
 .content-area {
   margin-top: 20px;
   text-align: left;
-  background: rgba(255, 255, 255, 0.05);
+  background: #fffdf5;
   padding: 20px;
   border-radius: 15px;
-  animation: slideUp 0.6s ease;
+  border: 1px solid #e6c879;
+  box-shadow: 0 0 12px rgba(220, 190, 70, 0.2);
+  animation: fadeIn 0.7s ease;
 }
 
-/* Tombol Navigasi */
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
+/* Tombol */
 .btn {
   padding: 10px 20px;
-  background: linear-gradient(45deg, #d4af37, #f5e7a3);
-  color: #000;
+  background: linear-gradient(45deg, #f2c94c, #f6e27a);
+  color: #333;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 0 10px rgba(255, 223, 120, 0.5);
+  transition: all 0.3s;
 }
 
 .btn:hover {
+  background: linear-gradient(45deg, #ffe680, #f2c94c);
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-}
-
-/* Kalkulator umum */
-.calculator {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.calc-display {
-  grid-column: span 4;
-  background: rgba(255, 255, 255, 0.1);
-  color: #f6d375;
-  text-align: right;
-  padding: 20px;
-  font-size: 2em;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.calc-btn {
-  padding: 20px;
-  background: rgba(212, 175, 55, 0.2);
-  color: #fff;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.calc-btn:hover {
-  background: rgba(212, 175, 55, 0.5);
 }
 
 /* Animasi */
@@ -163,12 +121,7 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
