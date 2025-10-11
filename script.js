@@ -1,81 +1,84 @@
-const subjectSelect = document.getElementById("subjectSelect");
-const contentArea = document.getElementById("contentArea");
-const navButtons = document.getElementById("navButtons");
+/* === Golden Batik Edition by Afrilia Amalia S. === */
 
-subjectSelect.addEventListener("change", () => {
-  const subject = subjectSelect.value;
-  if (!subject) {
-    contentArea.classList.add("hidden");
-    navButtons.classList.add("hidden");
-    return;
+document.addEventListener("DOMContentLoaded", () => {
+  const clickSound = document.getElementById("clickSound");
+  const playClick = () => { clickSound.currentTime = 0; clickSound.play(); };
+
+  const menuScreen = document.getElementById("menuScreen");
+  const slideWrapper = document.getElementById("slideWrapper");
+  const slidesViewport = document.getElementById("slidesViewport");
+  const subjectTitle = document.getElementById("subjectTitle");
+  
+  let currentIndex = 0;
+  let slidesData = [];
+
+  document.body.addEventListener("click", e => {
+    const btn = e.target;
+
+    if (btn.classList.contains("menu-btn")) {
+      playClick();
+      const subject = btn.dataset.subject;
+      openSubject(subject);
+    }
+
+    if (btn.id === "backToMenu") {
+      playClick();
+      slideWrapper.classList.add("hidden");
+      menuScreen.classList.remove("hidden");
+    }
+
+    if (btn.id === "nextSlide") nextSlide();
+    if (btn.id === "prevSlide") prevSlide();
+    if (btn.id === "btnReset") resetInputs();
+
+    const calcBtn = btn.closest("[data-calc]");
+    if (calcBtn) {
+      runCalc(calcBtn.dataset.calc);
+    }
+
+    const calcKey = btn.dataset.key;
+    if (calcKey) handleCalcKey(calcKey);
+  });
+
+  function openSubject(subj) {
+    menuScreen.classList.add("hidden");
+    slideWrapper.classList.remove("hidden");
+    subjectTitle.textContent = subj.charAt(0).toUpperCase() + subj.slice(1);
+    slidesData = document.createElement("div");
+    slidesViewport.innerHTML = `<div class="slide active"><h2>📘 ${subj.toUpperCase()}</h2><p class="desc">Silakan pelajari dan hitung rumus pada bidang ${subj}.</p></div>`;
   }
 
-  contentArea.classList.remove("hidden");
-  navButtons.classList.remove("hidden");
+  function nextSlide() {
+    playClick();
+  }
 
-  if (subject === "umum") {
-    showCalculatorUmum();
-  } else {
-    showMateri(subject);
+  function prevSlide() {
+    playClick();
+  }
+
+  function resetInputs() {
+    document.querySelectorAll("input").forEach(i => i.value = "");
+    document.querySelectorAll(".result-box").forEach(r => r.innerHTML = "");
+  }
+
+  function runCalc(type) {
+    playClick();
+    // logika rumus masuk di sini (sesuai versi script panjang kamu sebelumnya)
+  }
+
+  function handleCalcKey(key) {
+    const display = document.getElementById("calc-display");
+    if (!display) return;
+    playClick();
+    if (key === "C") display.value = "";
+    else if (key === "=") {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    } else {
+      display.value += key;
+    }
   }
 });
-
-function showMateri(subject) {
-  const materiList = {
-    matematika: ["Bangun Datar", "Bangun Ruang", "Trigonometri"],
-    fisika: ["Kinematika", "Energi", "Fluida"],
-    kimia: ["Struktur Atom", "Stoikiometri", "Termokimia"],
-    ekonomi: ["Permintaan dan Penawaran", "Pendapatan Nasional", "Pajak"]
-  };
-
-  const list = materiList[subject];
-  contentArea.innerHTML = `
-    <h3>📘 Pilih Materi ${subject.charAt(0).toUpperCase() + subject.slice(1)}</h3>
-    <ul>${list.map(m => `<li class="btn" onclick="showRumus('${subject}','${m}')">${m}</li>`).join('')}</ul>
-  `;
-}
-
-function showRumus(subject, materi) {
-  contentArea.innerHTML = `
-    <h3>${materi}</h3>
-    <p>Menampilkan rumus dan perhitungan interaktif untuk materi ${materi}.</p>
-    <button class="btn" onclick="resetPage()">🔁 Kembali ke Awal</button>
-  `;
-}
-
-function showCalculatorUmum() {
-  contentArea.innerHTML = `
-    <div class="calculator">
-      <div id="display" class="calc-display">0</div>
-      ${['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+']
-        .map(btn => `<button class="calc-btn" onclick="pressButton('${btn}')">${btn}</button>`).join('')}
-      <button class="calc-btn" style="grid-column: span 4;" onclick="clearDisplay()">C</button>
-    </div>
-  `;
-}
-
-let currentInput = '';
-
-function pressButton(value) {
-  const display = document.getElementById("display");
-  if (value === '=') {
-    try {
-      display.textContent = eval(currentInput) || 0;
-      currentInput = display.textContent;
-    } catch {
-      display.textContent = 'Error';
-    }
-  } else {
-    currentInput += value;
-    display.textContent = currentInput;
-  }
-}
-
-function clearDisplay() {
-  currentInput = '';
-  document.getElementById("display").textContent = '0';
-}
-
-function resetPage() {
-  location.reload();
-}
