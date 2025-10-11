@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalkulator Edukasi</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kalkulator Pelajaran — Afrilia & Ghalia</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Meta theme color (emas lembut) -->
+  <meta name="theme-color" content="#E8C07A">
 </head>
-<body>
-  <div class="overlay"></div>
+<body class="light-theme">
 
-  <!-- PROFIL -->
-  <header class="profile-card">
-    <img src="profil.jpg" alt="Afrilia Amalia S." class="profile-pic">
-    <div class="profile-info">
-      <h2 class="gold-text">Afrilia Amalia S.</h2>
-      <p class="gold-text">Ghalia Saffa Jauza P.</p>
-    </div>
-  </header>
+  <!-- Audio (opsional) -->
+  <audio id="sndClick" src="sounds/click.mp3" preload="auto"></audio>
+  <audio id="sndDing" src="sounds/ding.mp3" preload="auto"></audio>
+  <audio id="sndWoosh" src="sounds/woosh.mp3" preload="auto"></audio>
 
-  <!-- KONTEN UTAMA -->
-  <div class="container fade-in">
-    <h1 class="title">📘 Kalkulator Edukasi</h1>
-    <p class="subtitle">Pilih mata pelajaran untuk mulai belajar & menghitung rumus.</p>
+  <main class="app">
+    <!-- Background batik (CSS will paint the image) -->
+    <div class="backdrop" aria-hidden="true"></div>
 
-    <select id="subjectSelect" class="subject-select">
-      <option value="">-- Pilih Mata Pelajaran --</option>
-      <option value="matematika">Matematika</option>
-      <option value="fisika">Fisika</option>
-      <option value="kimia">Kimia</option>
-      <option value="ekonomi">Ekonomi</option>
-      <option value="umum">Kalkulator Umum</option>
-    </select>
+    <!-- Top profile card -->
+    <header class="header">
+      <div class="profile">
+        <img src="img/profil.jpg" alt="Foto Afrilia" class="avatar" id="avatar">
+        <div class="profile-text">
+          <div class="names">
+            <span class="name-gold">Afrilia Amalia S.</span>
+            <span class="amp"> & </span>
+            <span class="name-gold">Ghalia Saffa J.</span>
+          </div>
+          <div class="school">🏫 SMAN 2 Nganjuk</div>
+          <div class="location">Kab. Nganjuk, Prov. Jawa Timur</div>
+        </div>
+        <div class="school-emoji" aria-hidden="true">🎓</div>
+      </div>
+    </header>
 
-    <div id="contentArea" class="content-area hidden"></div>
+    <!-- Main container -->
+    <section class="container">
+      <!-- Menu screen -->
+      <section id="menuScreen" class="menu-screen">
+        <h1 class="title">Kalkulator Pelajaran</h1>
+        <p class="subtitle">Pilih mata pelajaran untuk mulai belajar & menghitung — desain tema batik & nuansa emas.</p>
 
-    <div class="nav-buttons hidden" id="navButtons">
-      <button id="prevBtn" class="btn">← Kembali</button>
-      <button id="nextBtn" class="btn">Selanjutnya →</button>
-    </div>
-  </div>
+        <div class="menu-grid">
+          <button class="menu-btn" data-subject="matematika">Matematika</button>
+          <button class="menu-btn" data-subject="fisika">Fisika</button>
+          <button class="menu-btn" data-subject="kimia">Kimia</button>
+          <button class="menu-btn" data-subject="ekonomi">Ekonomi</button>
+          <button class="menu-btn" data-subject="umum">Kalkulator Umum</button>
+        </div>
 
+        <footer class="footer-note">Profil: <strong>Afrilia Amalia S.</strong> & <strong>Ghalia Saffa J.</strong></footer>
+      </section>
+
+      <!-- Slide wrapper (hidden until a subject selected) -->
+      <section id="slideWrapper" class="slide-wrapper hidden" aria-hidden="true">
+        <div class="slide-header">
+          <button id="backToMenu" class="icon-btn">← Menu</button>
+          <h2 id="subjectTitle" class="subject-title">Mata Pelajaran</h2>
+          <div class="nav-actions">
+            <button id="btnReset" class="small-btn">Reset</button>
+            <button id="btnPrev" class="small-btn">Prev</button>
+            <button id="btnNext" class="small-btn">Next</button>
+          </div>
+        </div>
+
+        <div id="slidesViewport" class="slides-viewport" aria-live="polite">
+          <!-- Slides dibangun oleh JS -->
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
