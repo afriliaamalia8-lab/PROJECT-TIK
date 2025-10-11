@@ -1,69 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kalkulator Pelajaran — Afrilia Amalia S. & Ghalia Saffa Jauza P.</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css" />
-    
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Pelajaran Premium</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="overlay"></div>
 
-    <header class="profile-bar">
-        <img src="profil.jpg" alt="Foto Profil Afrilia & Ghalia" class="profile-img">
-        <div class="profile-text">
-            <div class="name">Afrilia Amalia S. & Ghalia Saffa Jauza P.</div>
-            <div class="school">SMAN 2 Nganjuk</div>
-        </div>
-    </header>
+  <!-- Profil Pembuat -->
+  <header class="profile-card">
+    <img src="profil.jpg" alt="Afrilia Amalia S." class="profile-pic">
+    <div class="profile-info">
+      <h2>Afrilia Amalia S.</h2>
+      <p>& Ghalia Saffa Jauza P.</p>
+    </div>
+  </header>
 
-    <main class="panel">
-        <section id="menuScreen" class="content-card">
-            <h1 class="title">Kalkulator Pelajaran</h1>
-            <p class="subtitle">Pilih mata pelajaran untuk mulai menghitung rumus.</p>
-            <div id="mainMenuGrid" class="menu-grid">
-                </div>
-        </section>
+  <!-- Kontainer Utama -->
+  <div class="container fade-in">
+    <h1 class="title">📘 Kalkulator Pelajaran Elegan</h1>
+    <p class="subtitle">Pilih mata pelajaran untuk mulai belajar & menghitung rumus!</p>
 
-        <section id="subMenuScreen" class="content-card hidden">
-             <div class="slide-header">
-                <button id="backToMain" class="ghost-btn" aria-label="Kembali ke Menu Utama">⬅ Kembali</button>
-                <h2 id="subMenuTitle" class="subject-title"></h2>
-            </div>
-            <div id="subMenuGrid" class="menu-grid" style="margin-top: 1.5rem;">
-                </div>
-        </section>
+    <select id="subjectSelect" class="subject-select">
+      <option value="">-- Pilih Mata Pelajaran --</option>
+      <option value="matematika">Matematika</option>
+      <option value="fisika">Fisika</option>
+      <option value="kimia">Kimia</option>
+      <option value="ekonomi">Ekonomi</option>
+      <option value="umum">Kalkulator Umum</option>
+    </select>
 
-        <section id="slideWrapper" class="content-card hidden">
-            <div class="slide-header">
-                <button id="backToPreviousMenu" class="ghost-btn" aria-label="Kembali">⬅ Kembali</button>
-                <h2 id="subjectTitle" class="subject-title"></h2>
-            </div>
+    <!-- Area Konten -->
+    <div id="contentArea" class="content-area hidden"></div>
 
-            <div class="slider-container">
-                <button id="prevSlide" class="nav-circle" aria-label="Slide Sebelumnya">◀</button>
-                <div id="slidesViewport" class="slides-viewport">
-                    </div>
-                <button id="nextSlide" class="nav-circle" aria-label="Slide Selanjutnya">▶</button>
-            </div>
-            
-            <div class="controls">
-                <button id="btnPrev" class="ghost-btn">Sebelumnya</button>
-                <button id="btnReset" class="btn alt">Reset</button>
-                <button id="btnNext" class="btn">Selanjutnya</button>
-            </div>
-        </section>
-    </main>
+    <div class="nav-buttons hidden" id="navButtons">
+      <button id="prevBtn" class="btn">← Kembali</button>
+      <button id="nextBtn" class="btn">Selanjutnya →</button>
+    </div>
+  </div>
 
-    <footer class="site-footer">
-        <p>Desain & Kode © 2025 Afrilia Amalia S. & Ghalia Saffa Jauza P.</p>
-    </footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
