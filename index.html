@@ -24,18 +24,22 @@
         <section id="menuScreen" class="content-card">
             <h1 class="title">Kalkulator Pelajaran</h1>
             <p class="subtitle">Pilih mata pelajaran untuk mulai menghitung rumus.</p>
-            <div class="menu-grid">
-                <button class="menu-btn" data-subject="matematika">📘 Matematika</button>
-                <button class="menu-btn" data-subject="fisika">🔭 Fisika</button>
-                <button class="menu-btn" data-subject="kimia">⚗️ Kimia</button>
-                <button class="menu-btn" data-subject="ekonomi">💰 Ekonomi</button>
-                <button class="menu-btn" data-subject="umum">🧮 Umum</button>
+            <div id="mainMenuGrid" class="menu-grid">
+                </div>
+        </section>
+
+        <section id="subMenuScreen" class="content-card hidden">
+             <div class="slide-header">
+                <button id="backToMain" class="ghost-btn" aria-label="Kembali ke Menu Utama">⬅ Kembali</button>
+                <h2 id="subMenuTitle" class="subject-title"></h2>
             </div>
+            <div id="subMenuGrid" class="menu-grid" style="margin-top: 1.5rem;">
+                </div>
         </section>
 
         <section id="slideWrapper" class="content-card hidden">
             <div class="slide-header">
-                <button id="backToMenu" class="ghost-btn" aria-label="Kembali ke Menu">⬅ Kembali</button>
+                <button id="backToPreviousMenu" class="ghost-btn" aria-label="Kembali">⬅ Kembali</button>
                 <h2 id="subjectTitle" class="subject-title"></h2>
             </div>
 
