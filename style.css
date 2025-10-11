@@ -100,26 +100,44 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .nav-actions { display:flex; gap:8px; }
 .small-btn { background: #fff; border:1px solid rgba(160,110,20,0.12); padding:6px 10px; border-radius:8px; cursor:pointer; }
 
-/* Slides viewport */
+/* === FIX SLIDE DISPLAY === */
 .slides-viewport {
-  display:flex;
-  gap:16px;
-  overflow:hidden;
-  position:relative;
-  min-height: 240px;
-  padding: 8px;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  padding: 10px;
 }
+
 .slide {
-  min-width:100%;
-  flex:0 0 100%;
-  background: rgba(255,255,255,0.85);
-  padding:18px;
-  border-radius:12px;
-  border:1px solid rgba(232,192,122,0.10);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
-  transform-origin:center;
-  transition: transform .32s cubic-bezier(.2,.9,.3,1), opacity .28s ease, filter .28s ease;
-  opacity:0; transform: translateY(18px) scale(.995);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  padding: 20px;
+  opacity: 0;
+  transform: translateX(50px);
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(.2,.8,.3,1);
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.slide.exit-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.slide.exit-right {
+  opacity: 0;
+  transform: translateX(50px);
 }
 .slide.active { opacity:1; transform: translateY(0) scale(1); }
 .slide.left { opacity:.5; transform: translateX(-20%) scale(.98); filter: blur(.4px) saturate(.95); }
@@ -183,6 +201,14 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   .slides-viewport { min-height: 420px; }
   .avatar { width:48px; height:48px; }
   .title { font-size:1.2rem; }
+}
+/* Background lembut biar teks tidak tenggelam di batik */
+.slide-wrapper {
+  background: rgba(255, 253, 245, 0.9);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* small touches */
