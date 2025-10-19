@@ -56,6 +56,20 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .school { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .location { font-size:0.78rem; color:#666; margin-top:2px; }
 
+/* ▼▼▼ TAMBAHKAN STYLE INI ▼▼▼ */
+.app-description {
+  font-size: 0.82rem;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.4;
+  font-style: italic;
+  opacity: 0.9;
+}
+/* ▲▲▲ AKHIR DARI STYLE TAMBAHAN ▲▲▲ */
+
+
+/* Menu screen */
+/* ... sisa kode ... */
 /* Menu screen */
 .menu-screen {
   background: rgba(255,255,255,0.7);
