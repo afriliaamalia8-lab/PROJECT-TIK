@@ -40,11 +40,11 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   flex-direction: column; /* <-- Kunci: Mengubah tata letak menjadi vertikal */
   gap: 10px;             /* <-- Jarak vertikal baru antara foto dan teks */
   align-items: center;   /* <-- Pusatkan semua item secara horizontal */
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255,255,255,0.7);
   backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 14px 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid rgba(232,192,122,0.18);
+  padding: 26px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
   color:#3a2f20;
 }
 .header .profile .avatar {
