@@ -9,7 +9,7 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .backdrop {
   position: fixed;
   inset: 0;
-  background-image: url("batikk.jpg");
+  background-image: url("batikk.jpg"); /* Pastikan nama file gambar batik sesuai */
   background-size: cover;
   background-position: center;
   filter: saturate(0.95) contrast(1.02);
@@ -47,7 +47,8 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 }
 .avatar {
   width:56px; height:56px; border-radius:50%;
-  object-fit:cover; border:3px solid rgba(212,175,55,0.12);
+  object-fit:cover;
+  border:3px solid rgba(212,175,55,0.12);
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 .profile-text { flex:1; }
@@ -56,20 +57,6 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .school { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .location { font-size:0.78rem; color:#666; margin-top:2px; }
 
-/* ▼▼▼ TAMBAHKAN STYLE INI ▼▼▼ */
-.app-description {
-  font-size: 0.82rem;
-  color: #555;
-  margin-top: 6px;
-  line-height: 1.4;
-  font-style: italic;
-  opacity: 0.9;
-}
-/* ▲▲▲ AKHIR DARI STYLE TAMBAHAN ▲▲▲ */
-
-
-/* Menu screen */
-/* ... sisa kode ... */
 /* Menu screen */
 .menu-screen {
   background: rgba(255,255,255,0.7);
@@ -96,6 +83,8 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   cursor:pointer;
   box-shadow: 0 8px 18px rgba(168,121,23,0.11);
   transition: transform .14s ease, box-shadow .14s ease;
+  font-size: 0.95rem; /* Menyesuaikan font size agar konsisten */
+  text-align: center; /* Memastikan teks di tengah */
 }
 .menu-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(168,121,23,0.14); }
 .menu-btn:active { transform: translateY(-1px) scale(.997); }
@@ -228,3 +217,74 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 /* small touches */
 .amp { color:#6b4a10; margin: 0 6px; }
 .name-gold::after { content: ""; display:inline-block; width:6px; height:6px; background: #f7e6c6; margin-left:8px; border-radius:50%; opacity:0.5; }
+
+
+/* === TAMBAHAN UNTUK MODUL PELAJARAN (BARU) === */
+
+/* Atur ulang grid untuk daftar topik agar lebih rapi */
+.menu-grid.topic-grid {
+  grid-template-columns: 1fr; /* 1 kolom untuk daftar materi */
+  gap: 8px;
+}
+
+/* Judul semester di dalam menu */
+.semester-title {
+  font-family: "Montserrat", sans-serif;
+  color: #ad7b17; /* Warna emas judul */
+  font-size: 1.1rem;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid rgba(180, 125, 20, 0.18); /* Border tombol */
+}
+
+/* Tombol materi agar lebih minimalis */
+.menu-btn.topic-btn {
+  background: linear-gradient(180deg,#fdf9f2,#f7f1e6);
+  color: #5a3b00;
+  font-weight: 400; /* Dibuat lebih tipis agar mudah dibaca */
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(168,121,23,0.05);
+}
+.menu-btn.topic-btn:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(168,121,23,0.1);
+}
+
+/* Styling untuk konten modul di dalam slide */
+.module-content {
+  padding-top: 10px;
+  line-height: 1.6;
+  color: #3a2f20; /* Warna teks gelap */
+  max-height: 500px; /* Batasi tinggi dan beri scroll */
+  overflow-y: auto;
+}
+.module-content h3 {
+  font-family: "Montserrat";
+  color: #8a5b12; /* Warna judul slide */
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+.module-content p {
+  margin-bottom: 12px;
+}
+.module-content ul, .module-content ol {
+  margin-left: 20px;
+  margin-bottom: 12px;
+}
+.module-content li {
+  margin-bottom: 8px;
+}
+/* Styling untuk rumus agar menonjol */
+.module-content .formula {
+    background: rgba(245,243,240,0.9);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(180,130,30,0.06);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    color: #5a3b00;
+    margin: 10px 0;
+    overflow-x: auto; /* Scroll jika rumus terlalu panjang */
+}
