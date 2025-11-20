@@ -107,7 +107,8 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .slides-viewport {
   position: relative;
   overflow: hidden;
-  min-height: 320px;
+  /* HAPUS 'min-height' agar bisa tumbuh */
+  /* min-height: 320px; */ 
   padding: 10px;
 }
 
@@ -124,6 +125,10 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   transform: translateX(50px);
   pointer-events: none;
   transition: all 0.5s cubic-bezier(.2,.8,.3,1);
+  
+  /* TAMBAHAN: Izinkan slide tumbuh */
+  position: relative; 
+  height: auto; 
 }
 
 .slide.active {
@@ -131,19 +136,30 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   transform: translateX(0);
   pointer-events: auto;
   z-index: 2;
+  
+  /* TAMBAHAN: Pastikan slide aktif */
+  position: relative;
 }
 
 .slide.exit-left {
   opacity: 0;
   transform: translateX(-50px);
+  position: absolute; /* Pastikan yang keluar adalah absolut */
 }
 
 .slide.exit-right {
   opacity: 0;
   transform: translateX(50px);
+  position: absolute; /* Pastikan yang keluar adalah absolut */
 }
 .slide.active { opacity:1; transform: translateY(0) scale(1); }
-.slide.left { opacity:.5; transform: translateX(-20%) scale(.98); filter: blur(.4px) saturate(.95); }
+.slide.left { 
+  opacity:.5; 
+  transform: translateX(-20%) scale(.98); 
+  filter: blur(.4px) saturate(.95); 
+  position: absolute; /* Pastikan yang kiri adalah absolut */
+  height: 100%; /* Set tinggi agar tidak berantakan saat transisi */
+}
 
 /* Slide content */
 .slide h2 { font-family: "Montserrat"; color:#8a5b12; margin-bottom:6px; }
@@ -201,7 +217,8 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 }
 @media (max-width:520px) {
   .menu-grid { grid-template-columns: 1fr; }
-  .slides-viewport { min-height: 420px; }
+  /* Hapus min-height agar bisa tumbuh */
+  /* .slides-viewport { min-height: 420px; } */
   .avatar { width:48px; height:48px; }
   .title { font-size:1.2rem; }
 }
@@ -252,14 +269,25 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   box-shadow: 0 8px 20px rgba(168,121,23,0.1);
 }
 
-/* Styling untuk konten modul di dalam slide */
+/* * ========================================
+ * INI ADALAH PERUBAHAN YANG ANDA MINTA
+ * ========================================
+ */
 .module-content {
   padding-top: 10px;
   line-height: 1.6;
   color: #3a2f20; /* Warna teks gelap */
-  max-height: 500px; /* Batasi tinggi dan beri scroll */
-  overflow-y: auto;
+  /* max-height: 500px; */  /* <-- DIHAPUS */
+  /* overflow-y: auto; */ /* <-- DIHAPUS */
+  
+  /* Biarkan konten tumbuh secara alami */
+  height: auto; 
 }
+/* ========================================
+ * AKHIR DARI PERUBAHAN
+ * ========================================
+ */
+
 .module-content h3 {
   font-family: "Montserrat";
   color: #8a5b12; /* Warna judul slide */
