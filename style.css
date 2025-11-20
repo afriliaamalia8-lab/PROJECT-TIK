@@ -33,6 +33,20 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   padding: 20px;
 }
 
+/* Header profile */
+/* Header profile */
+.header .profile {
+  display: flex;
+  flex-direction: column; /* <-- Kunci: Mengubah tata letak menjadi vertikal */
+  gap: 10px;             /* <-- Jarak vertikal baru antara foto dan teks */
+  align-items: center;   /* <-- Pusatkan semua item secara horizontal */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  color:#3a2f20;
+}
 .header .profile .avatar {
   width: 80px;   /* <-- UKURAN DIPERBESAR */
   height: 80px;  /* <-- UKURAN DIPERBESAR */
@@ -40,12 +54,6 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   border: 3px solid #fff; /* Border sedikit dipertebal agar menonjol */
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Bayangan sedikit lebih kuat */
-}
-.avatar {
-  width:56px; height:56px; border-radius:50%;
-  object-fit:cover;
-  border:3px solid rgba(212,175,55,0.12);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 .profile-text { flex:1; }
 .header .profile .profile-text {
