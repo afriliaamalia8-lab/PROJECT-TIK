@@ -1,5 +1,7 @@
-/* script.js  (Afrilia & Ghalia)
-   
+/* script.js — World Championship Edition (Afrilia & Ghalia)
+   Developer: International Lead Developer
+   Arsitektur: SPA (Single Page Application) dengan data terstruktur
+   Tujuan: Performa maksimal, 0% lag, 100% juara.
 */
 
 /* ==================================================
@@ -2019,20 +2021,12 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * (MODIFIKASI) Menutup slide wrapper dan kembali ke menu yang benar
    */
-  function closeSlides() {
-  // PENTING: Lakukan reset sebelum menyembunyikan wrapper
-  // 1. Menghapus semua konten slide (agar tidak ada riwayat yang terlihat)
-  slidesViewport.innerHTML = ''; 
-  
-  // 2. Mereset status subjek dan index
-  currentIndex = 0; 
-  currentSubject = null; 
-  
-  // Lanjutkan dengan menyembunyikan wrapper dan menampilkan menu utama
-  slideWrapper.classList.add('hidden');
-  menuScreen.classList.remove('hidden');
-}
-   
+  function closeSlides(){
+    slideWrapper.classList.add("hidden");
+    slideWrapper.setAttribute('aria-hidden', 'true');
+    menuScreen.classList.remove("hidden");
+    slidesViewport.innerHTML = "";
+    currentSubject = null;
     
     // Tampilkan kembali tombol nav kalkulator
     btnPrev.style.display = 'inline-block';
