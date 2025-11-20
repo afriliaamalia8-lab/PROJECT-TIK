@@ -3,40 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kalkulator Pelajaran — Afrilia & Ghalia</title>
+  <title>Kalkulator & Modul Pelajaran — Afrilia & Ghalia</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Meta theme color (emas lembut) -->
   <meta name="theme-color" content="#E8C07A">
 </head>
 <body class="light-theme">
 
-  <!-- Audio (opsional) -->
   <audio id="sndClick" src="sounds/click.mp3" preload="auto"></audio>
   <audio id="sndDing" src="sounds/ding.mp3" preload="auto"></audio>
   <audio id="sndWoosh" src="sounds/woosh.mp3" preload="auto"></audio>
 
   <main class="app">
-    <!-- Background batik (CSS will paint the image) -->
     <div class="backdrop" aria-hidden="true"></div>
 
-    <!-- Top profile card -->
     <header class="header">
       <div class="profile">
-        <img src="profil.jpeg" alt="Foto Afrilia" class="avatar" id="avatar">
+        <img src="profil.jpeg" alt="Foto Afrilia & Ghalia" class="avatar" id="avatar">
         <div class="profile-text">
           <div class="names">
             <span class="name-gold">Afrilia Amalia S.</span>
             <span class="amp"> & </span>
             <span class="name-gold">Ghalia Saffa J.</span>
           </div>
-
-          <div class="app-description">website ini kami buat untuk membantu pelajar menghitung dan memahami rumus berbagai mata pelajaran seperti Matematika, Fisika, Kimia, dan Ekonomi. kami ingin menghadirkan alat belajar yang praktis dan menarik, dengan sentuhan desain bernuansa emas dan batik sebagai wujud cinta budaya Indonesia</div>
           <div class="school">🏫 SMAN 2 Nganjuk</div>
           <div class="location">Kab. Nganjuk, Prov. Jawa Timur</div>
         </div>
@@ -44,25 +36,23 @@
       </div>
     </header>
 
-    <!-- Main container -->
     <section class="container">
-      <!-- Menu screen -->
+      
       <section id="menuScreen" class="menu-screen">
-        <h1 class="title">Kalkulator Pelajaran</h1>
-        <p class="subtitle">Pilih mata pelajaran untuk mulai belajar & menghitung — desain tema batik & nuansa emas.</p>
+        <h1 class="title">Kalkulator & Modul Pelajaran</h1>
+        <p class="subtitle">Pilih layanan untuk mulai belajar — Desain tema batik & nuansa emas.</p>
 
-        <div class="menu-grid">
-          <button class="menu-btn" data-subject="matematika">Matematika</button>
-          <button class="menu-btn" data-subject="fisika">Fisika</button>
-          <button class="menu-btn" data-subject="kimia">Kimia</button>
-          <button class="menu-btn" data-subject="ekonomi">Ekonomi</button>
-          <button class="menu-btn" data-subject="umum">Kalkulator Umum</button>
+        <div class="menu-grid" id="mainMenuGrid">
+          <button class="menu-btn" data-nav="modul">
+            📚 Modul Pelajaran
+          </button>
+          <button class="menu-btn" data-nav="kalkulator">
+            🧮 Kalkulator Pelajaran
+          </button>
         </div>
-
         <footer class="footer-note">Profil: <strong>Afrilia Amalia S.</strong> & <strong>Ghalia Saffa J.</strong></footer>
       </section>
 
-      <!-- Slide wrapper (hidden until a subject selected) -->
       <section id="slideWrapper" class="slide-wrapper hidden" aria-hidden="true">
         <div class="slide-header">
           <button id="backToMenu" class="icon-btn">← Menu</button>
@@ -75,13 +65,11 @@
         </div>
 
         <div id="slidesViewport" class="slides-viewport" aria-live="polite">
-          <!-- Slides dibangun oleh JS -->
-        </div>
+          </div>
       </section>
     </section>
   </main>
 
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
