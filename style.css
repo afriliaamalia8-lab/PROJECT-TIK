@@ -33,17 +33,13 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   padding: 20px;
 }
 
-/* Header profile */
-.header .profile {
-  display:flex;
-  gap:16px;
-  align-items:center;
-  background: rgba(255,255,255,0.6);
-  padding:10px 14px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  border: 1px solid rgba(232,192,122,0.25);
-  margin-bottom: 12px;
+.header .profile .avatar {
+  width: 80px;   /* <-- UKURAN DIPERBESAR */
+  height: 80px;  /* <-- UKURAN DIPERBESAR */
+  border-radius: 50%;
+  border: 3px solid #fff; /* Border sedikit dipertebal agar menonjol */
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Bayangan sedikit lebih kuat */
 }
 .avatar {
   width:56px; height:56px; border-radius:50%;
@@ -52,6 +48,9 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 .profile-text { flex:1; }
+.header .profile .profile-text {
+  text-align: center; /* <-- Kunci: Pusatkan teks */
+}
 .names { font-family: "Montserrat", sans-serif; font-weight:700; color:#b8860b; font-size:1rem; display:flex; gap:8px; align-items:center; }
 .name-gold { color:#b8860b; }
 .description { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
