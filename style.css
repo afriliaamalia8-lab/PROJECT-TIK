@@ -60,7 +60,7 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
   text-align: center; /* <-- Kunci: Pusatkan teks */
 }
 .names { font-family: "Montserrat", sans-serif; font-weight:700; color:#b8860b; font-size:1rem; display:flex; gap:8px; align-items:center; }
-.name-gold { color:#b8860b; align-items:center; }
+.name-gold { color:#b8860b; margin-top:4px; }
 .description { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .school { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .location { font-size:0.78rem; color:#666; margin-top:2px; }
