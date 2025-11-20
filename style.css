@@ -54,6 +54,7 @@ html, body, .app { height: 100%; font-family: "Poppins", system-ui, -apple-syste
 .profile-text { flex:1; }
 .names { font-family: "Montserrat", sans-serif; font-weight:700; color:#b8860b; font-size:1rem; display:flex; gap:8px; align-items:center; }
 .name-gold { color:#b8860b; }
+.description { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .school { font-size:0.85rem; color:#444; opacity:0.9; margin-top:4px; }
 .location { font-size:0.78rem; color:#666; margin-top:2px; }
 
